@@ -1,51 +1,55 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --bg-900: #040404;
-  --bg-800: #0b0b0b;
-  --fg-100: #ffffff;
-  --muted-200: #bfbfbf;
-  --accent-red: #FF2E2E;
-  --accent-red-glow: rgba(255, 46, 46, 0.4);
-  --glass: rgba(255, 255, 255, 0.03);
-}
+  /* Spacing — 8px grid */
+  --space-1: 0.5rem; /* 8px */
+  --space-2: 1rem; /* 16px */
+  --space-3: 1.5rem; /* 24px */
+  --space-4: 2rem; /* 32px */
+  --space-6: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
+  --space-10: 5rem; /* 80px */
+  --space-12: 6rem; /* 96px */
+  --space-16: 8rem; /* 128px */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-900: #0b0b0b;
-  }
+  /* Structure-only neutrals (no theme) */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1e1e1e;
+  --border-primary: #2a2a2a;
+  --border-secondary: #3a3a3a;
+  --text-primary: #e5e5e5;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #6b6b6b;
+
+  /* Layout */
+  --max-width: 64rem; /* 1024px */
+  --nav-height: 4rem; /* 64px */
 }
 
 body {
-  background: radial-gradient(1200px 600px at 15% 10%, rgba(255, 46, 46, 0.08), transparent),
-    radial-gradient(1000px 500px at 85% 85%, rgba(255, 46, 46, 0.05), transparent),
-    linear-gradient(180deg, var(--bg-900), var(--bg-800));
-  color: var(--fg-100);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family:
+    var(--font-geist-sans),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 400ms ease, color 300ms ease;
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px
+  width: 8px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent
+  background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-  border-radius: 999px
-}
-
-.ring-red-soft {
-  box-shadow: 0 8px 30px rgba(225, 29, 29, 0.08);
-}
-
-.glass-card {
-  background: var(--glass);
-  backdrop-filter: blur(6px);
+  background: var(--border-primary);
+  border-radius: 999px;
 }

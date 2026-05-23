@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Nav from '@/components/nav';
+import Footer from '@/components/footer';
 import './globals.css';
 
 const geistSans = Geist({
@@ -13,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Reqsh',
-  description: 'A simple and intuitive API testing CLI tool built in Rust.',
+  title: {
+    default: 'reqsh — Interactive HTTP Shell',
+    template: '%s — reqsh',
+  },
+  description:
+    'An interactive terminal shell for sending HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history. Built in Rust. Open source.',
 };
 
 export default function RootLayout({
@@ -23,8 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="min-h-screen flex flex-col antialiased">
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
