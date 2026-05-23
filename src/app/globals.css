@@ -2,19 +2,20 @@
 
 @theme {
   --color-accent: #ff3333;
-  --color-surface: #111111;
+  --color-surface: #0a0a0a;
 }
 
 body {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 51, 51, 0.04), transparent), #0a0a0a;
-  color: #ededed;
+  background-color: #000000;
+  color: #ffffff;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(255, 51, 51, 0.25);
+  background: rgba(255, 51, 51, 0.3);
+  color: #ffffff;
 }
 
 *::-webkit-scrollbar {
@@ -26,6 +27,32 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 999px;
+}
+
+/* Custom easing curves for snappy, premium feel */
+.transition-snappy {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
 }

@@ -1,129 +1,137 @@
 import Link from 'next/link';
-import { Terminal, Zap, History, Search, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import TerminalDemo from '@/components/terminal-demo';
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-4xl px-6">
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-20 pb-24">
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
-            An interactive shell for HTTP requests
-          </h1>
-          <p className="mt-5 text-lg text-neutral-400 leading-relaxed max-w-lg">
-            reqsh is a terminal-based REPL for sending HTTP requests. Set a base URL, add headers,
-            send requests, and re-run them from history. Built in Rust.
-          </p>
-          <div className="mt-6 flex gap-3">
-            <Link
-              href="/install"
-              className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:brightness-110 transition"
-            >
-              Install
-            </Link>
-            <Link
-              href="/docs"
-              className="rounded-lg border border-white/[0.1] px-5 py-2.5 text-sm font-medium text-neutral-300 hover:bg-white/[0.04] transition-colors"
-            >
-              View Docs
-            </Link>
-          </div>
+    <div className="mx-auto max-w-6xl px-6">
+      <section className="flex flex-col items-center text-center pt-32 pb-20">
+        <h1 className="text-6xl md:text-[5.5rem] font-bold tracking-tighter leading-[1.05] text-white max-w-4xl">
+          The interactive shell for <span className="text-accent">HTTP</span> requests.
+        </h1>
+        <p className="mt-8 text-xl text-[#888888] leading-relaxed max-w-2xl font-medium">
+          Set a base URL, add headers once, send requests, and re-run them from history. Pure
+          terminal efficiency, built in Rust.
+        </p>
+        <div className="mt-10 flex gap-4">
+          <Link
+            href="/install"
+            className="group relative flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-white transition-snappy hover:brightness-110 hover:shadow-[0_0_30px_-5px_rgba(255,51,51,0.4)]"
+          >
+            Install reqsh
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-snappy" />
+          </Link>
+          <Link
+            href="/docs"
+            className="flex items-center justify-center rounded-full border border-white/10 bg-transparent px-8 py-3.5 text-sm font-bold text-white transition-snappy hover:bg-white/5"
+          >
+            Documentation
+          </Link>
         </div>
+      </section>
+
+      <section className="w-full max-w-5xl mx-auto -mt-4 mb-40">
         <TerminalDemo />
       </section>
 
-      <section className="py-20 border-t border-white/[0.06]">
-        <h2 className="text-2xl font-semibold tracking-tight mb-8">What it does</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Feature
-            icon={Terminal}
-            title="Interactive REPL"
-            desc="A persistent shell session. Set your base URL and headers once, then send requests without repeating configuration."
-          />
-          <Feature
-            icon={Zap}
-            title="HTTP Methods"
-            desc="Supports GET, POST, PUT, and DELETE. Add headers and a JSON body to any request."
-          />
-          <Feature
-            icon={History}
-            title="History & Re-run"
-            desc="Every command is saved to history. Browse past commands and re-execute any entry with rerun."
-          />
-          <Feature
-            icon={Search}
-            title="Tab Completion"
-            desc="Autocomplete for all commands and HTTP methods. Start typing and press Tab to complete."
-          />
+      <section className="py-24 border-t border-white/4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <div>
+            <h2 className="text-4xl font-bold tracking-tight text-white mb-6">
+              A persistent REPL.
+            </h2>
+            <p className="text-lg text-[#888888] leading-relaxed">
+              Stop typing the same host and authentication headers over and over. With reqsh, you
+              set your base URL and headers once in a session. Every subsequent request uses them
+              automatically.
+            </p>
+          </div>
+          <div className="bg-[#050505] border border-white/8 rounded-2xl p-8 font-mono text-sm leading-8 text-[#888888]">
+            <div>
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">base</span> https://api.stripe.com
+            </div>
+            <div>
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">header</span> Authorization Bearer sk_test
+            </div>
+            <div className="mt-4">
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-accent font-semibold">GET</span>{' '}
+              <span className="text-white">/v1/customers</span>
+            </div>
+            <div>
+              <span className="text-accent font-bold">.....&gt;</span>{' '}
+              <span className="text-white">::send</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 border-t border-white/[0.06]">
-        <h2 className="text-2xl font-semibold tracking-tight mb-8">How it works</h2>
-        <div className="space-y-5">
-          <Step n={1} title="Start the shell" code="reqsh" />
-          <Step n={2} title="Set your base URL" code="base https://api.example.com" />
-          <Step
-            n={3}
-            title="Send a request"
-            code={
-              <>
-                GET /users <span className="text-neutral-600">→</span> ::send
-              </>
-            }
-          />
+      <section className="py-24 border-t border-white/4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <div className="order-2 md:order-1 bg-[#050505] border border-white/8 rounded-2xl p-8 font-mono text-sm leading-8 text-[#888888]">
+            <div>
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">history</span>
+            </div>
+            <div className="mt-2 ml-4">
+              <div className="flex gap-4">
+                <span className="opacity-50">1</span> <span>base https://api.stripe.com</span>
+              </div>
+              <div className="flex gap-4">
+                <span className="opacity-50">2</span>{' '}
+                <span>header Authorization Bearer sk_test</span>
+              </div>
+              <div className="flex gap-4">
+                <span className="opacity-50">3</span> <span>GET /v1/customers</span>
+              </div>
+            </div>
+            <div className="mt-4">
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">rerun</span> 3
+            </div>
+          </div>
+          <div className="order-1 md:order-2">
+            <h2 className="text-4xl font-bold tracking-tight text-white mb-6">
+              Time-travel with history.
+            </h2>
+            <p className="text-lg text-[#888888] leading-relaxed">
+              Every command is saved. Type{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">history</code> to see
+              everything you&apos;ve done in the current session. Made a typo or need to repeat a
+              request? Just use{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">rerun &lt;id&gt;</code>{' '}
+              to execute it instantly.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 border-t border-white/[0.06]">
-        <h2 className="text-xl font-semibold tracking-tight mb-2">Open source, built in Rust</h2>
-        <p className="text-sm text-neutral-400 mb-5 max-w-md">
-          reqsh is free and open source. Contributions, issues, and feedback are welcome.
-        </p>
-        <a
-          href="https://github.com/hars-21/reqsh"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2 text-sm text-neutral-300 hover:text-white hover:border-white/[0.15] transition-all"
-        >
-          <Star size={15} />
-          Star on GitHub
-        </a>
+      <section className="py-24 border-t border-white/4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <div>
+            <h2 className="text-4xl font-bold tracking-tight text-white mb-6">Built for speed.</h2>
+            <p className="text-lg text-[#888888] leading-relaxed mb-6">
+              Written in Rust, reqsh starts instantly and uses minimal memory. It features blazing
+              fast tab completion for all commands and HTTP methods.
+            </p>
+            <Link
+              href="/docs"
+              className="text-accent font-bold hover:text-white transition-snappy inline-flex items-center gap-1"
+            >
+              Read the documentation <ArrowRight size={16} />
+            </Link>
+          </div>
+          <div className="bg-[#050505] border border-white/8 rounded-2xl p-10 flex items-center justify-center">
+            <div className="text-2xl font-mono text-white tracking-widest flex items-center">
+              <span className="text-accent font-bold mr-4">reqsh&gt;</span>P
+              <span className="text-[#444444]">OST</span>
+              <span className="w-3 h-7 bg-white ml-1 animate-blink" />
+            </div>
+          </div>
+        </div>
       </section>
-    </div>
-  );
-}
-
-function Feature({
-  icon: Icon,
-  title,
-  desc,
-}: {
-  icon: React.ElementType;
-  title: string;
-  desc: string;
-}) {
-  return (
-    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 hover:border-white/[0.12] hover:bg-white/[0.03] transition-colors">
-      <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
-        <Icon size={18} className="text-accent" />
-      </div>
-      <h3 className="font-medium mb-1">{title}</h3>
-      <p className="text-sm text-neutral-400 leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
-function Step({ n, title, code }: { n: number; title: string; code: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="flex-none w-7 h-7 rounded-full border border-white/[0.1] flex items-center justify-center text-xs font-mono text-neutral-500">
-        {n}
-      </div>
-      <div>
-        <div className="text-sm font-medium">{title}</div>
-        <code className="text-sm font-mono text-neutral-500">{code}</code>
-      </div>
     </div>
   );
 }
