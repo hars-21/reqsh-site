@@ -1,48 +1,24 @@
 @import 'tailwindcss';
 
-:root {
-  /* Spacing — 8px grid */
-  --space-1: 0.5rem; /* 8px */
-  --space-2: 1rem; /* 16px */
-  --space-3: 1.5rem; /* 24px */
-  --space-4: 2rem; /* 32px */
-  --space-6: 3rem; /* 48px */
-  --space-8: 4rem; /* 64px */
-  --space-10: 5rem; /* 80px */
-  --space-12: 6rem; /* 96px */
-  --space-16: 8rem; /* 128px */
-
-  /* Structure-only neutrals (no theme) */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1e1e1e;
-  --border-primary: #2a2a2a;
-  --border-secondary: #3a3a3a;
-  --text-primary: #e5e5e5;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #6b6b6b;
-
-  /* Layout */
-  --max-width: 64rem; /* 1024px */
-  --nav-height: 4rem; /* 64px */
+@theme {
+  --color-accent: #ff3333;
+  --color-surface: #111111;
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family:
-    var(--font-geist-sans),
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    sans-serif;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 51, 51, 0.04), transparent), #0a0a0a;
+  color: #ededed;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(255, 51, 51, 0.25);
 }
 
 *::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -50,6 +26,6 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--border-primary);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 999px;
 }

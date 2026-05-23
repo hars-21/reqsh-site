@@ -1,183 +1,128 @@
 import Link from 'next/link';
+import { Terminal, Zap, History, Search, Star } from 'lucide-react';
 import TerminalDemo from '@/components/terminal-demo';
 
 export default function Home() {
   return (
-    <div className="mx-auto" style={{ maxWidth: 'var(--max-width)', padding: '0 var(--space-3)' }}>
-      {/* ───── Hero ───── */}
-      <section style={{ paddingTop: 'var(--space-12)', paddingBottom: 'var(--space-12)' }}>
-        <h1
-          className="text-4xl md:text-5xl font-bold tracking-tight"
-          style={{ color: 'var(--text-primary)', maxWidth: '36rem', lineHeight: '1.15' }}
-        >
-          An interactive shell for HTTP requests
-        </h1>
-        <p
-          className="text-lg"
-          style={{
-            color: 'var(--text-secondary)',
-            marginTop: 'var(--space-3)',
-            maxWidth: '40rem',
-            lineHeight: '1.7',
-          }}
-        >
-          reqsh is a terminal-based REPL for sending HTTP requests. Set a base URL, add headers,
-          send requests, and re-run them from history. Built in Rust.
-        </p>
-        <div
-          className="flex flex-wrap"
-          style={{ gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}
-        >
-          <Link
-            href="/install"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium"
-            style={{
-              padding: 'var(--space-1) var(--space-3)',
-              backgroundColor: 'var(--text-primary)',
-              color: 'var(--bg-primary)',
-            }}
-          >
-            Install
-          </Link>
-          <Link
-            href="/docs"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium border"
-            style={{
-              padding: 'var(--space-1) var(--space-3)',
-              borderColor: 'var(--border-secondary)',
-              color: 'var(--text-secondary)',
-            }}
-          >
-            View Docs
-          </Link>
+    <div className="mx-auto max-w-4xl px-6">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-20 pb-24">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+            An interactive shell for HTTP requests
+          </h1>
+          <p className="mt-5 text-lg text-neutral-400 leading-relaxed max-w-lg">
+            reqsh is a terminal-based REPL for sending HTTP requests. Set a base URL, add headers,
+            send requests, and re-run them from history. Built in Rust.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <Link
+              href="/install"
+              className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:brightness-110 transition"
+            >
+              Install
+            </Link>
+            <Link
+              href="/docs"
+              className="rounded-lg border border-white/[0.1] px-5 py-2.5 text-sm font-medium text-neutral-300 hover:bg-white/[0.04] transition-colors"
+            >
+              View Docs
+            </Link>
+          </div>
         </div>
-      </section>
-
-      {/* ───── Terminal Demo ───── */}
-      <section style={{ paddingBottom: 'var(--space-16)' }}>
         <TerminalDemo />
       </section>
 
-      {/* ───── Capabilities ───── */}
-      <section style={{ paddingBottom: 'var(--space-16)' }}>
-        <h2
-          className="text-2xl font-bold tracking-tight"
-          style={{ color: 'var(--text-primary)', marginBottom: 'var(--space-6)' }}
-        >
-          What it does
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 'var(--space-4)' }}>
-          <Capability
+      <section className="py-20 border-t border-white/[0.06]">
+        <h2 className="text-2xl font-semibold tracking-tight mb-8">What it does</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Feature
+            icon={Terminal}
             title="Interactive REPL"
-            description="A persistent shell session. Set your base URL and headers once, then send requests without repeating configuration."
+            desc="A persistent shell session. Set your base URL and headers once, then send requests without repeating configuration."
           />
-          <Capability
+          <Feature
+            icon={Zap}
             title="HTTP Methods"
-            description="Supports GET, POST, PUT, and DELETE. Add headers and a JSON body to any request."
+            desc="Supports GET, POST, PUT, and DELETE. Add headers and a JSON body to any request."
           />
-          <Capability
+          <Feature
+            icon={History}
             title="History & Re-run"
-            description="Every command is saved to history. Browse past commands with `history` and re-execute any entry with `rerun <id>`."
+            desc="Every command is saved to history. Browse past commands and re-execute any entry with rerun."
           />
-          <Capability
-            title="Tab Completion & Vi Mode"
-            description="Autocomplete for all commands and methods. Vi keybindings for line editing."
+          <Feature
+            icon={Search}
+            title="Tab Completion"
+            desc="Autocomplete for all commands and HTTP methods. Start typing and press Tab to complete."
           />
         </div>
       </section>
 
-      {/* ───── How It Works ───── */}
-      <section style={{ paddingBottom: 'var(--space-16)' }}>
-        <h2
-          className="text-2xl font-bold tracking-tight"
-          style={{ color: 'var(--text-primary)', marginBottom: 'var(--space-6)' }}
-        >
-          How it works
-        </h2>
-        <div className="flex flex-col" style={{ gap: 'var(--space-4)' }}>
-          <Step number={1} title="Start the shell" code="reqsh" />
-          <Step number={2} title="Set your base URL" code="base https://api.example.com" />
-          <Step number={3} title="Send a request" code="GET /users  →  ::send" />
+      <section className="py-20 border-t border-white/[0.06]">
+        <h2 className="text-2xl font-semibold tracking-tight mb-8">How it works</h2>
+        <div className="space-y-5">
+          <Step n={1} title="Start the shell" code="reqsh" />
+          <Step n={2} title="Set your base URL" code="base https://api.example.com" />
+          <Step
+            n={3}
+            title="Send a request"
+            code={
+              <>
+                GET /users <span className="text-neutral-600">→</span> ::send
+              </>
+            }
+          />
         </div>
       </section>
 
-      {/* ───── Open Source ───── */}
-      <section
-        className="border-t"
-        style={{
-          borderColor: 'var(--border-primary)',
-          paddingTop: 'var(--space-8)',
-          paddingBottom: 'var(--space-8)',
-        }}
-      >
-        <h2
-          className="text-xl font-bold tracking-tight"
-          style={{ color: 'var(--text-primary)', marginBottom: 'var(--space-2)' }}
-        >
-          Open source, built in Rust
-        </h2>
-        <p
-          className="text-sm"
-          style={{
-            color: 'var(--text-secondary)',
-            marginBottom: 'var(--space-3)',
-            maxWidth: '32rem',
-          }}
-        >
+      <section className="py-20 border-t border-white/[0.06]">
+        <h2 className="text-xl font-semibold tracking-tight mb-2">Open source, built in Rust</h2>
+        <p className="text-sm text-neutral-400 mb-5 max-w-md">
           reqsh is free and open source. Contributions, issues, and feedback are welcome.
         </p>
         <a
           href="https://github.com/hars-21/reqsh"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-sm font-medium"
-          style={{ color: 'var(--text-primary)' }}
+          className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2 text-sm text-neutral-300 hover:text-white hover:border-white/[0.15] transition-all"
         >
-          View on GitHub{' '}
-          <span className="ml-1" aria-hidden="true">
-            ↗
-          </span>
+          <Star size={15} />
+          Star on GitHub
         </a>
       </section>
     </div>
   );
 }
 
-function Capability({ title, description }: { title: string; description: string }) {
+function Feature({
+  icon: Icon,
+  title,
+  desc,
+}: {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div
-      className="rounded-lg border"
-      style={{ borderColor: 'var(--border-primary)', padding: 'var(--space-3)' }}
-    >
-      <h3
-        className="text-base font-semibold"
-        style={{ color: 'var(--text-primary)', marginBottom: 'var(--space-1)' }}
-      >
-        {title}
-      </h3>
-      <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-        {description}
-      </p>
+    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 hover:border-white/[0.12] hover:bg-white/[0.03] transition-colors">
+      <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+        <Icon size={18} className="text-accent" />
+      </div>
+      <h3 className="font-medium mb-1">{title}</h3>
+      <p className="text-sm text-neutral-400 leading-relaxed">{desc}</p>
     </div>
   );
 }
 
-function Step({ number, title, code }: { number: number; title: string; code: string }) {
+function Step({ n, title, code }: { n: number; title: string; code: React.ReactNode }) {
   return (
-    <div className="flex items-start" style={{ gap: 'var(--space-2)' }}>
-      <div
-        className="flex-none w-7 h-7 rounded-full flex items-center justify-center text-sm font-mono font-bold border"
-        style={{ borderColor: 'var(--border-secondary)', color: 'var(--text-secondary)' }}
-      >
-        {number}
+    <div className="flex items-start gap-3">
+      <div className="flex-none w-7 h-7 rounded-full border border-white/[0.1] flex items-center justify-center text-xs font-mono text-neutral-500">
+        {n}
       </div>
       <div>
-        <div className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-          {title}
-        </div>
-        <code className="text-sm font-mono" style={{ color: 'var(--text-tertiary)' }}>
-          {code}
-        </code>
+        <div className="text-sm font-medium">{title}</div>
+        <code className="text-sm font-mono text-neutral-500">{code}</code>
       </div>
     </div>
   );
