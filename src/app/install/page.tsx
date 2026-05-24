@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function InstallPage() {
   return (
     <div className="mx-auto max-w-6xl px-6">
-      <div className="max-w-4xl pt-24 pb-40">
+      <div className="max-w-3xl pt-24 pb-40">
         <header className="mb-20">
           <h1 className="text-5xl font-bold tracking-tighter text-white">Installation</h1>
           <p className="mt-6 text-xl text-[#888888] leading-relaxed font-medium">
@@ -35,7 +35,7 @@ export default function InstallPage() {
         <section id="binary" className="mb-24">
           <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Prebuilt Binary</h2>
           <p className="text-[#888888] text-lg leading-relaxed mb-6">
-            If you prefer manual installation, you can download the raw executable from the{' '}
+            Download a prebuilt binary from the{' '}
             <a
               href="https://github.com/hars-21/reqsh/releases"
               target="_blank"
@@ -44,24 +44,24 @@ export default function InstallPage() {
             >
               GitHub Releases
             </a>{' '}
-            page.
+            page. Available for macOS, Linux, and Windows.
           </p>
           <div className="mb-6 space-y-4 text-[#888888] text-lg">
             <p>
-              <span className="text-white font-bold mr-3">1.</span> Download the binary for macOS,
-              Linux, or Windows.
+              <span className="text-white font-bold mr-3">1.</span>Download the binary for your
+              platform.
             </p>
             <p>
-              <span className="text-white font-bold mr-3">2.</span> Move it to a directory included
+              <span className="text-white font-bold mr-3">2.</span>Move it to a directory included
               in your system PATH.
             </p>
             <p>
-              <span className="text-white font-bold mr-3">3.</span> Grant execution permissions.
+              <span className="text-white font-bold mr-3">3.</span>Grant execution permissions.
             </p>
           </div>
           <CodeBlock
             lines={[
-              '# Example for macOS / Linux',
+              '# macOS / Linux',
               'mv reqsh /usr/local/bin/',
               'chmod +x /usr/local/bin/reqsh',
               'reqsh',
@@ -91,12 +91,20 @@ export default function InstallPage() {
             ]}
           />
           <p className="mt-6 text-[#888888] text-lg">
-            Once compiled, the binary will be available at{' '}
+            The binary will be at{' '}
             <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
               target/release/reqsh
             </code>
             .
           </p>
+        </section>
+
+        <section id="verify">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Verify Installation</h2>
+          <p className="text-[#888888] text-lg leading-relaxed mb-6">
+            Confirm reqsh is installed and working correctly.
+          </p>
+          <CodeBlock lines={['reqsh help']} />
         </section>
       </div>
     </div>

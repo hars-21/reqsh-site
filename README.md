@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img src="public/logo.png" alt="reqsh banner" width="600" />
+</div>
 
-## Getting Started
+<h1 align="center">reqsh</h1>
 
-First, run the development server:
+<div align="center">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey)](#)
+
+</div>
+
+**reqsh** is a beautifully crafted, interactive REPL-like terminal shell for making HTTP requests. Built in Rust for maximum speed, it allows you to set a base URL, define headers once, and seamlessly send or re-run requests—so you never have to type the same long `curl` command twice.
+
+## 🚀 What is reqsh?
+
+`reqsh` acts as a specialized, persistent shell environment just for your APIs. Instead of constructing tedious and verbose commands over and over, you enter a session, configure your environment, and send requests naturally. It remembers your state, tracks your history, and makes exploring or testing APIs directly from the terminal incredibly intuitive and fast.
+
+## ✨ Features
+
+- **Interactive REPL**: A persistent, dedicated shell session for HTTP.
+- **Stateful Environment**: Set base URLs and headers once—they persist throughout your entire session.
+- **Command History**: Cycle through your past requests with ease and immediately re-execute them.
+- **Multi-line Bodies**: Effortlessly build complex JSON bodies using a multi-line input mode.
+- **Auto-completion**: Enjoy context-aware suggestions for commands and paths.
+- **Syntax Highlighting**: Beautiful, color-coded formatting for JSON responses and errors.
+- **Blazing Fast**: Written purely in Rust for instant startup and minimal footprint.
+
+## 💻 Commands
+
+Inside the `reqsh` interactive shell, you use intuitively designed commands to build and send requests:
+
+### Environment Configuration
+
+- `base <url>` — Set the global base URL for the session. All requests will automatically append to this.
+- `header <key> <value>` — Add a persistent header that applies to all subsequent requests.
+
+### Executing Requests
+
+To construct a request, start with the HTTP method and path. You can optionally add local headers or body data on subsequent lines, before typing `::send` to fire it off.
+
+Example:
+
+```sh
+reqsh> POST /api/users
+.....> Content-Type: application/json
+.....>
+.....> { "user": "alice" }
+.....> ::send
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Session Utilities
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `history` — View your numbered session history.
+- `rerun <id>` — Instantly re-execute a request from your history list.
+- `help` — Display syntax and command documentation.
+- `exit` — Terminate the shell session.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

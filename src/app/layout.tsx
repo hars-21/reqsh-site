@@ -20,7 +20,26 @@ export const metadata: Metadata = {
     template: '%s — reqsh',
   },
   description:
-    'An interactive terminal shell for sending HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history. Built in Rust. Open source.',
+    'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history. Built in Rust. Open source.',
+  keywords: ['reqsh', 'HTTP shell', 'terminal', 'REPL', 'Rust', 'CLI', 'HTTP client'],
+  authors: [{ name: 'hars-21', url: 'https://github.com/hars-21' }],
+  creator: 'hars-21',
+  openGraph: {
+    title: 'reqsh — Interactive HTTP Shell',
+    description:
+      'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history.',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'reqsh — Interactive HTTP Shell',
+    description: 'An interactive terminal shell for HTTP requests. Built in Rust. Open source.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

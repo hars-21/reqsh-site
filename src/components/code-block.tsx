@@ -6,7 +6,10 @@ export default function CodeBlock({ lines }: { lines: string[] }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(lines.join('\n'));
+    const cleanText = lines
+      .map((line) => line.replace(/^(reqsh>\s+|\.\.\.\.\.>\s+)/, ''))
+      .join('\n');
+    navigator.clipboard.writeText(cleanText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

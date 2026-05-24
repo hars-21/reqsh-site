@@ -31,20 +31,10 @@ body {
   border-radius: 999px;
 }
 
-/* Custom easing curves for snappy, premium feel */
 .transition-snappy {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-duration: 300ms;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
 }
 
 @keyframes blink {

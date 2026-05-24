@@ -1,6 +1,22 @@
 'use client';
+import { useState } from 'react';
+import { Copy, Check } from 'lucide-react';
 
 export default function TerminalDemo() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    const text = `base https://api.example.com
+header Authorization Bearer tok_abc
+GET /users
+::send
+history
+rerun 3`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="relative group rounded-2xl border border-white/8 bg-[#050505] shadow-[0_0_100px_-20px_rgba(255,51,51,0.15)] overflow-hidden transition-snappy hover:shadow-[0_0_120px_-20px_rgba(255,51,51,0.25)] hover:border-white/12">
       <div className="flex items-center justify-between px-5 py-4 border-b border-white/4 bg-surface/50">
@@ -14,6 +30,13 @@ export default function TerminalDemo() {
             reqsh
           </span>
         </div>
+        <button
+          onClick={handleCopy}
+          className="relative z-10 p-1.5 rounded-md bg-transparent text-[#888888] opacity-0 group-hover:opacity-100 transition-snappy hover:bg-white/10 hover:text-white"
+          aria-label="Copy demo commands"
+        >
+          {copied ? <Check size={16} className="text-accent" /> : <Copy size={16} />}
+        </button>
       </div>
 
       <div className="p-6 md:p-8 font-mono text-sm leading-8 overflow-x-auto selection:bg-accent/30">
@@ -46,7 +69,7 @@ export default function TerminalDemo() {
         <Prompt shell="reqsh">
           <span className="text-white">history</span>
         </Prompt>
-        <div className="text-[#888888] mt-1 space-y-0 leading-6">
+        <div className="text-[#888888] mt-1 leading-6">
           <div>base https://api.example.com</div>
           <div>header Authorization Bearer tok_abc</div>
           <div>GET /users</div>

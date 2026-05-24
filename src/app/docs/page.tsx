@@ -5,7 +5,7 @@ import CodeBlock from '@/components/code-block';
 export const metadata: Metadata = {
   title: 'Docs',
   description:
-    'Getting started with reqsh — learn how to install, configure, and send HTTP requests from your terminal.',
+    'Getting started with reqsh - learn how to install, configure and send HTTP requests from your terminal.',
 };
 
 export default function DocsPage() {
