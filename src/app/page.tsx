@@ -10,8 +10,8 @@ export default function Home() {
           The interactive shell for <span className="text-accent">HTTP</span> requests.
         </h1>
         <p className="mt-6 md:mt-8 text-lg md:text-xl text-[#888888] leading-relaxed max-w-2xl font-medium">
-          Set a base URL, add headers once, send requests, and re-run them from history. Pure
-          terminal efficiency, built in Rust.
+          Set a base URL, add headers once, use variables, save requests, and re-run them from
+          history. Pure terminal efficiency, built in Rust.
         </p>
         <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-4">
           <Link
@@ -112,6 +112,59 @@ export default function Home() {
 
       <section className="py-20 md:py-24 border-t border-white/4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div className="order-2 md:order-1">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
+              Variables. Save. Run.
+            </h2>
+            <p className="text-base md:text-lg text-[#888888] leading-relaxed">
+              Use{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">
+                {'{{'}name{'}}'}
+              </code>{' '}
+              syntax to interpolate values into paths, headers, and bodies. Save any request to
+              memory with <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">save</code>{' '}
+              and replay it instantly with{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">run</code>.
+            </p>
+          </div>
+          <div className="order-1 md:order-2 bg-[#050505] border border-white/8 rounded-2xl p-6 md:p-8 font-mono text-sm leading-8 text-[#888888] overflow-x-auto">
+            <div>
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">set</span> token eyJhbGciOiJIUzI1NiJ9
+            </div>
+            <div className="mt-4">
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-accent font-semibold">GET</span>{' '}
+              <span className="text-white">/users/</span>
+              <span className="text-accent">
+                {'{{'}token{'}}'}
+              </span>
+            </div>
+            <div>
+              <span className="text-accent font-bold">.....&gt;</span>{' '}
+              <span className="text-white">::send</span>
+            </div>
+            <div className="mt-6">
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">save</span> get-users
+            </div>
+            <div>
+              <span className="text-accent font-bold">reqsh&gt;</span>{' '}
+              <span className="text-white font-semibold">run</span> get-users
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24 border-t border-white/4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div className="bg-[#050505] border border-white/8 rounded-2xl p-8 md:p-10 flex items-center justify-center min-h-32">
+            <div className="text-xl md:text-2xl font-mono text-white tracking-widest flex items-center">
+              <span className="text-accent font-bold mr-4">reqsh&gt;</span>P
+              <span className="text-[#444444]">OST</span>
+              <span className="w-3 h-7 bg-white ml-1 animate-blink" />
+            </div>
+          </div>
           <div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
               Built for speed.
@@ -126,13 +179,6 @@ export default function Home() {
             >
               Read the documentation <ArrowRight size={16} />
             </Link>
-          </div>
-          <div className="bg-[#050505] border border-white/8 rounded-2xl p-8 md:p-10 flex items-center justify-center min-h-32">
-            <div className="text-xl md:text-2xl font-mono text-white tracking-widest flex items-center">
-              <span className="text-accent font-bold mr-4">reqsh&gt;</span>P
-              <span className="text-[#444444]">OST</span>
-              <span className="w-3 h-7 bg-white ml-1 animate-blink" />
-            </div>
           </div>
         </div>
       </section>

@@ -16,24 +16,34 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'reqsh — Interactive HTTP Shell',
-    template: '%s — reqsh',
+    default: 'reqsh - Interactive HTTP Shell',
+    template: '%s - reqsh',
   },
   description:
-    'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history. Built in Rust. Open source.',
-  keywords: ['reqsh', 'HTTP shell', 'terminal', 'REPL', 'Rust', 'CLI', 'HTTP client'],
+    'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Built in Rust. Open source.',
+  keywords: [
+    'reqsh',
+    'HTTP shell',
+    'terminal',
+    'REPL',
+    'Rust',
+    'CLI',
+    'HTTP client',
+    'variables',
+    'save requests',
+  ],
   authors: [{ name: 'hars-21', url: 'https://github.com/hars-21' }],
   creator: 'hars-21',
   openGraph: {
-    title: 'reqsh — Interactive HTTP Shell',
+    title: 'reqsh - Interactive HTTP Shell',
     description:
-      'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, send requests, and re-run them from history.',
+      'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'reqsh — Interactive HTTP Shell',
+    title: 'reqsh - Interactive HTTP Shell',
     description: 'An interactive terminal shell for HTTP requests. Built in Rust. Open source.',
   },
   robots: {

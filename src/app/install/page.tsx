@@ -4,7 +4,7 @@ import CodeBlock from '@/components/code-block';
 export const metadata: Metadata = {
   title: 'Install',
   description:
-    'Install reqsh — use the install script, download a prebuilt binary, or build from source.',
+    'Install reqsh - use the install script, download a prebuilt binary or build from source.',
 };
 
 export default function InstallPage() {
@@ -44,7 +44,7 @@ export default function InstallPage() {
             >
               GitHub Releases
             </a>{' '}
-            page. Available for macOS, Linux, and Windows.
+            page. Available for macOS, Linux.
           </p>
           <div className="mb-6 space-y-4 text-[#888888] text-lg">
             <p>
@@ -62,8 +62,8 @@ export default function InstallPage() {
           <CodeBlock
             lines={[
               '# macOS / Linux',
-              'mv reqsh /usr/local/bin/',
-              'chmod +x /usr/local/bin/reqsh',
+              'mv reqsh /.local/bin/',
+              'chmod +x /.local/bin/reqsh',
               'reqsh',
             ]}
           />
@@ -104,7 +104,7 @@ export default function InstallPage() {
           <p className="text-[#888888] text-lg leading-relaxed mb-6">
             Confirm reqsh is installed and working correctly.
           </p>
-          <CodeBlock lines={['reqsh help']} />
+          <CodeBlock lines={['reqsh --help']} />
         </section>
       </div>
     </div>

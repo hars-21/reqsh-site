@@ -87,6 +87,66 @@ export default function DocsPage() {
           />
         </section>
 
+        <section id="variables" className="mb-32">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Variables</h2>
+          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+            Store values with{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              set
+            </code>{' '}
+            and reference them anywhere in your request using{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              {'{{name}}'}
+            </code>
+            . Variables are interpolated at request time.
+          </p>
+          <CodeBlock
+            lines={[
+              'reqsh> set token eyJhbGciOiJIUzI1NiJ9',
+              'reqsh> set host api.example.com',
+              'reqsh> GET /users/{{token}}',
+              '.....> Authorization: Bearer {{token}}',
+              '.....> ::send',
+            ]}
+          />
+        </section>
+
+        <section id="query-params" className="mb-32">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Query Parameters</h2>
+          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+            Add query parameters with{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              param:
+            </code>{' '}
+            lines. Values are URL-encoded automatically.
+          </p>
+          <CodeBlock
+            lines={[
+              'reqsh> GET /users',
+              '.....> param: page=1',
+              '.....> param: limit=20',
+              '.....> ::send',
+            ]}
+          />
+        </section>
+
+        <section id="save-run" className="mb-32">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Save &amp; Run</h2>
+          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+            Save a request to session memory after executing it, then run it again instantly without
+            retyping.
+          </p>
+          <CodeBlock
+            lines={[
+              'reqsh> GET /users/{{id}}',
+              '.....> ::send',
+              'reqsh> save get-user',
+              'saved',
+              'reqsh> run get-user',
+            ]}
+          />
+        </section>
+
         <section id="commands">
           <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Built-in Commands</h2>
           <p className="text-[#888888] text-lg leading-relaxed mb-10">
@@ -113,6 +173,22 @@ export default function DocsPage() {
                   usage="header <key> <value>"
                   desc="Add a persistent header applied to all requests."
                 />
+                <Row
+                  cmd="set"
+                  usage="set <name> <value>"
+                  desc="Store a variable for interpolation."
+                />
+                <Row cmd="unset" usage="unset <name>" desc="Remove a variable." />
+                <Row cmd="unset header" usage="unset header <key>" desc="Remove a global header." />
+                <Row
+                  cmd="save"
+                  usage="save <name>"
+                  desc="Save the last executed request to memory."
+                />
+                <Row cmd="run" usage="run <name>" desc="Execute a saved request." />
+                <Row cmd="vars" usage="vars" desc="List all session variables." />
+                <Row cmd="headers" usage="headers" desc="List all global headers." />
+                <Row cmd="requests" usage="requests" desc="List all saved requests." />
                 <Row
                   cmd="history"
                   usage="history"
