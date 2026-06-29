@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo.png" alt="reqsh banner" width="600" />
+  <img src="public/banner.svg" alt="reqsh banner" width="600" />
 </div>
 
 <h1 align="center">reqsh</h1>

@@ -35,7 +35,7 @@ export default function InstallPage() {
         <section id="binary" className="mb-24">
           <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Prebuilt Binary</h2>
           <p className="text-[#888888] text-lg leading-relaxed mb-6">
-            Download a prebuilt binary from the{' '}
+            Download the latest binary for your platform from the{' '}
             <a
               href="https://github.com/hars-21/reqsh/releases"
               target="_blank"
@@ -44,7 +44,7 @@ export default function InstallPage() {
             >
               GitHub Releases
             </a>{' '}
-            page. Available for macOS, Linux.
+            page. Available for macOS (Intel &amp; Silicon), Linux (x86_64), and Windows (x86_64).
           </p>
           <div className="mb-6 space-y-4 text-[#888888] text-lg">
             <p>
@@ -62,11 +62,22 @@ export default function InstallPage() {
           <CodeBlock
             lines={[
               '# macOS / Linux',
-              'mv reqsh /.local/bin/',
-              'chmod +x /.local/bin/reqsh',
+              'mv reqsh ~/.local/bin/',
+              'chmod +x ~/.local/bin/reqsh',
               'reqsh',
             ]}
           />
+          <p className="mt-4 text-[#888888] text-lg">
+            Windows users: place{' '}
+            <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
+              reqsh.exe
+            </code>{' '}
+            in a directory listed in your{' '}
+            <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
+              %PATH%
+            </code>
+            .
+          </p>
         </section>
 
         <section id="source" className="mb-24">

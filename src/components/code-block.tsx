@@ -21,7 +21,7 @@ export default function CodeBlock({ lines }: { lines: string[] }) {
 
     const words = line.split(/(\s+)/);
     return words.map((word, i) => {
-      if (['GET', 'POST', 'PUT', 'DELETE'].includes(word)) {
+      if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(word)) {
         return (
           <span key={i} className="text-accent font-semibold">
             {word}

@@ -50,7 +50,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="text-sm text-[#888888] hover:text-white transition-snappy"
                   >
-                    Releases
+                    Releases (v0.1.5)
                   </a>
                 </li>
               </ul>
@@ -94,8 +94,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-8 border-t border-white/4 text-[#888888] text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} reqsh. Open source.</p>
-          <p>Built with Rust. Deployed on Vercel.</p>
+          <p>© {new Date().getFullYear()} reqsh. Open source (MIT).</p>
+          <p>Built with Rust. Available on macOS, Linux, and Windows.</p>
         </div>
       </div>
     </footer>

@@ -14,16 +14,16 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-const siteUrl = 'https://reqsh.vercel.app';
+const siteUrl = 'https://reqsh.dev';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'reqsh - Interactive HTTP Shell',
+    default: 'reqsh - Interactive HTTP REPL',
     template: '%s - reqsh',
   },
   description:
-    'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Built in Rust. Open source.',
+    'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, re-run from history. Supports GET, POST, PUT, PATCH, DELETE. Built in Rust. Open source.',
   keywords: [
     'reqsh',
     'HTTP shell',
@@ -34,13 +34,15 @@ export const metadata: Metadata = {
     'HTTP client',
     'variables',
     'save requests',
+    'PATCH',
+    'API client',
   ],
   authors: [{ name: 'hars-21', url: 'https://github.com/hars-21' }],
   creator: 'hars-21',
   openGraph: {
-    title: 'reqsh - Interactive HTTP Shell',
+    title: 'reqsh - Interactive HTTP REPL',
     description:
-      'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history.',
+      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
     type: 'website',
     locale: 'en_US',
     siteName: 'reqsh',
@@ -56,8 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'reqsh - Interactive HTTP Shell',
-    description: 'An interactive terminal shell for HTTP requests. Built in Rust. Open source.',
+    title: 'reqsh - Interactive HTTP REPL',
+    description: 'An interactive REPL shell for HTTP requests. Built in Rust. Open source.',
     images: ['/banner.svg'],
   },
   robots: {
@@ -110,9 +112,9 @@ export default function RootLayout({
     '@type': 'SoftwareApplication',
     name: 'reqsh',
     applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'macOS, Linux',
+    operatingSystem: 'macOS, Linux, Windows',
     description:
-      'An interactive terminal shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history.',
+      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
     url: siteUrl,
     author: {
       '@type': 'Person',

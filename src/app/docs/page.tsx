@@ -73,18 +73,45 @@ export default function DocsPage() {
           <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Sending Requests</h2>
           <p className="text-[#888888] text-lg leading-relaxed mb-8">
             The shell supports building complex requests step-by-step. Start with the method and
-            path. Add headers on the following lines. Leave a blank line to start writing the JSON
-            body.
+            path. HTTP methods are case-insensitive -{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              GET
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              POST
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              PUT
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              PATCH
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              DELETE
+            </code>{' '}
+            are all supported. You can also use absolute URLs — no base URL required. Add headers on
+            the following lines. Leave a blank line to start writing the body.
           </p>
           <CodeBlock
             lines={[
-              'reqsh> POST /users',
+              'reqsh> PATCH /users/1',
               '.....> Content-Type: application/json',
               '.....>',
-              '.....> {"name": "Alice", "email": "alice@example.com"}',
+              '.....> {"name": "Alice"}',
               '.....> ::send',
             ]}
           />
+          <div className="mt-6 text-[#888888] text-lg leading-relaxed">
+            Response time is displayed after every request:{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              200 OK - 142ms
+            </code>
+            . JSON responses are automatically pretty-printed with colored syntax.
+          </div>
         </section>
 
         <section id="variables" className="mb-32">
@@ -150,8 +177,27 @@ export default function DocsPage() {
         <section id="commands">
           <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Built-in Commands</h2>
           <p className="text-[#888888] text-lg leading-relaxed mb-10">
-            Beyond standard HTTP methods (GET, POST, PUT, DELETE), reqsh provides specific REPL
-            commands to manage your session.
+            Beyond standard HTTP methods (
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              GET
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              POST
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              PUT
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              PATCH
+            </code>
+            ,{' '}
+            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+              DELETE
+            </code>
+            ), reqsh provides specific REPL commands to manage your session.
           </p>
           <div className="rounded-2xl border border-white/8 bg-[#050505] overflow-hidden">
             <table className="w-full text-left border-collapse">

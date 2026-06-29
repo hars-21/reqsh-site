@@ -32,7 +32,10 @@ export default function Nav() {
             className="flex items-center gap-2 text-sm font-medium text-[#888888] hover:text-white transition-snappy group"
           >
             <Star size={15} className="group-hover:text-accent transition-snappy" />
-            GitHub
+            <span>GitHub</span>
+            <span className="hidden sm:inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-[#888888] group-hover:text-white group-hover:border-white/20 transition-snappy">
+              <Star size={10} className="fill-current" /> 26
+            </span>
           </a>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function Home() {
         </h1>
         <p className="mt-6 md:mt-8 text-lg md:text-xl text-[#888888] leading-relaxed max-w-2xl font-medium">
           Set a base URL, add headers once, use variables, save requests, and re-run them from
-          history. Pure terminal efficiency, built in Rust.
+          history. Pure terminal efficiency, built in Rust - for macOS, Linux, and Windows.
         </p>
         <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-4">
           <Link
@@ -124,7 +124,8 @@ export default function Home() {
               syntax to interpolate values into paths, headers, and bodies. Save any request to
               memory with <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">save</code>{' '}
               and replay it instantly with{' '}
-              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">run</code>.
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">run</code>. Every
+              response includes its timing so you can measure performance at a glance.
             </p>
           </div>
           <div className="order-1 md:order-2 bg-[#050505] border border-white/8 rounded-2xl p-6 md:p-8 font-mono text-sm leading-8 text-[#888888] overflow-x-auto">
@@ -144,6 +145,7 @@ export default function Home() {
               <span className="text-accent font-bold">.....&gt;</span>{' '}
               <span className="text-white">::send</span>
             </div>
+            <div className="mt-3 text-[#4ADE80] text-xs">200 OK — 142ms</div>
             <div className="mt-6">
               <span className="text-accent font-bold">reqsh&gt;</span>{' '}
               <span className="text-white font-semibold">save</span> get-users
@@ -170,8 +172,15 @@ export default function Home() {
               Built for speed.
             </h2>
             <p className="text-base md:text-lg text-[#888888] leading-relaxed mb-6">
-              Written in Rust, reqsh starts instantly and uses minimal memory. It features blazing
-              fast tab completion for all commands and HTTP methods.
+              Written in Rust, reqsh starts instantly and uses minimal memory. HTTP methods are
+              case-insensitive (
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">GET</code>,{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">POST</code>,{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">PUT</code>,{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">PATCH</code>,{' '}
+              <code className="text-white bg-white/5 px-1.5 py-0.5 rounded">DELETE</code>), and
+              responses are pretty-printed with colored output. Use absolute URLs directly — no base
+              URL required.
             </p>
             <Link
               href="/docs"

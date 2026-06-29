@@ -58,7 +58,9 @@ rerun 3`;
           <span className="text-white">::send</span>
         </Prompt>
 
-        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">HTTP/1.1 200 OK</div>
+        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">
+          HTTP/1.1 200 OK <span className="text-[#888888] font-normal">- 142ms</span>
+        </div>
         <div className="text-[#888888] mb-2">content-type: application/json</div>
         <pre className="text-white mt-1">{`[
   { "id": 1, "name": "Alice" },
@@ -80,7 +82,9 @@ rerun 3`;
           <span className="text-white">rerun</span>
           <span className="text-[#888888]">3</span>
         </Prompt>
-        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">HTTP/1.1 200 OK</div>
+        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">
+          HTTP/1.1 200 OK <span className="text-[#888888] font-normal">- 98ms</span>
+        </div>
 
         <div className="mt-6 flex items-center">
           <span className="text-accent font-bold">reqsh&gt;&nbsp;</span>

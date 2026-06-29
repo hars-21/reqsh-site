@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/api/',
       },
     ],
-    sitemap: 'https://reqsh.vercel.app/sitemap.xml',
+    sitemap: 'https://reqsh.dev/sitemap.xml',
   };
 }
