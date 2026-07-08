@@ -25,6 +25,12 @@ export default function Nav() {
           >
             Install
           </Link>
+          <Link
+            href="/changelog"
+            className="text-sm font-medium text-[#888888] hover:text-white transition-snappy"
+          >
+            What's New
+          </Link>
           <a
             href="https://github.com/hars-21/reqsh"
             target="_blank"

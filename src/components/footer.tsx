@@ -44,6 +44,14 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/changelog"
+                    className="text-sm text-[#888888] hover:text-white transition-snappy"
+                  >
+                    What's New
+                  </Link>
+                </li>
+                <li>
                   <a
                     href="https://github.com/hars-21/reqsh/releases"
                     target="_blank"
