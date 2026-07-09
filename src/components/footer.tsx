@@ -43,7 +43,7 @@ export default function Footer() {
                   href="/changelog"
                   className="text-sm text-ink-foreground/80 transition-snappy hover:text-accent"
                 >
-                  What&apos;s New
+                  Changelog
                 </Link>
               </li>
               <li>
@@ -111,7 +111,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-ink-border flex flex-col md:flex-row justify-between items-center gap-3 text-ink-muted text-xs">
           <p>© {new Date().getFullYear()} reqsh. Open source.</p>
-          <p className="font-serif italic text-sm">Calm requests, from your terminal.</p>
+          <p className="font-serif italic text-sm">An interactive way to work with HTTP.</p>
         </div>
       </div>
     </footer>

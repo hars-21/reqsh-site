@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "What's New",
+  title: 'Changelog',
   description: 'Changelog and release history for reqsh - see what has changed in each version.',
 };
 
@@ -80,9 +80,8 @@ export default async function ChangelogPage() {
     <div className="mx-auto max-w-6xl px-6">
       <div className="max-w-3xl pt-20 md:pt-28 pb-24">
         <header className="mb-16 md:mb-20">
-          <p className="mb-5 font-mono text-xs tracking-widest uppercase text-accent">Changelog</p>
           <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-foreground text-balance">
-            What&apos;s new
+            Changelog
           </h1>
           <p className="mt-6 text-lg text-muted leading-relaxed text-pretty">
             Every release of reqsh, from the latest features to the smallest fixes.

@@ -8,17 +8,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="mx-auto max-w-6xl px-6 pt-24 md:pt-36 pb-16 md:pb-20">
         <div className="flex flex-col items-center text-center">
-          <p className="mb-8 font-mono text-xs tracking-widest uppercase text-muted animate-fade-up">
-            An interactive HTTP shell, built in Rust
-          </p>
-
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-foreground max-w-4xl text-balance animate-fade-up">
-            A <em className="text-accent">calmer</em> way to work with HTTP
+            An <em className="text-accent">interactive</em> way to work with HTTP
           </h1>
 
           <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-2xl text-pretty animate-fade-up-delay-1">
-            Set a base URL once. Keep your headers. Use variables, save requests, and replay them
-            from history — all from a quiet, focused terminal session.
+            A live shell that talks back. Set a base URL once, keep your headers, use variables,
+            save requests, and replay them from history — request by request, in real time.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-up-delay-2">
@@ -86,7 +82,6 @@ export default function Home() {
 
       {/* Feature 1: Persistent REPL */}
       <FeatureSection
-        label="Persistent state"
         title="Say it once, use it everywhere"
         description="Stop typing the same host and authentication headers over and over. Set your base URL and headers at the start of a session — every subsequent request picks them up automatically."
         snippet={
@@ -114,7 +109,6 @@ export default function Home() {
       {/* Feature 2: History */}
       <FeatureSection
         reversed
-        label="History"
         title="Nothing you type is lost"
         description={
           <>
@@ -153,7 +147,6 @@ export default function Home() {
 
       {/* Feature 3: Variables & saved requests */}
       <FeatureSection
-        label="Dynamic requests"
         title="Variables, saved and replayed"
         description={
           <>
@@ -191,11 +184,38 @@ export default function Home() {
         }
       />
 
+      {/* Core values */}
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24" aria-label="Core values">
+        <div className="max-w-2xl mb-14 md:mb-20">
+          <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground text-balance">
+            What we stand for
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-14 md:gap-16">
+          <ValueBlock
+            index="01"
+            title="Free and open source"
+            description="reqsh belongs to everyone. The entire codebase is public on GitHub — read it, fork it, improve it. No accounts, no telemetry, no paid tiers. Just a tool you can trust and shape."
+          />
+          <ValueBlock
+            index="02"
+            title="Simple yet powerful"
+            description="A handful of commands you can learn in minutes, backed by variables, templates, saved requests, and full session history. The surface stays small while the workflow scales with you."
+          />
+          <ValueBlock
+            index="03"
+            title="Interactive by design"
+            description="Every request is a conversation. You type, reqsh responds — with status, timing, and a prompt ready for your next move. No config files to edit, no reruns of long one-liners. Just flow."
+          />
+        </div>
+      </section>
+
       {/* Closing CTA */}
       <section className="mx-auto max-w-6xl px-6 pt-8 md:pt-16">
         <div className="rounded-3xl bg-accent-soft border border-border px-6 py-16 md:px-16 md:py-20 text-center">
           <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground text-balance">
-            Your terminal, <em className="text-accent">a little quieter</em>
+            Your terminal, <em className="text-accent">talking back</em>
           </h2>
           <p className="mt-5 text-muted leading-relaxed max-w-xl mx-auto text-pretty">
             Free, open source, and available for macOS, Linux, and Windows. Install in seconds and
@@ -228,6 +248,30 @@ export default function Home() {
   );
 }
 
+function ValueBlock({
+  index,
+  title,
+  description,
+}: {
+  index: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 border-t border-border pt-10 md:pt-12">
+      <span className="md:col-span-1 font-mono text-sm text-accent" aria-hidden="true">
+        {index}
+      </span>
+      <h3 className="md:col-span-5 font-serif text-3xl md:text-4xl tracking-tight text-foreground text-balance">
+        {title}
+      </h3>
+      <p className="md:col-span-6 text-muted leading-relaxed text-pretty md:pt-1.5">
+        {description}
+      </p>
+    </div>
+  );
+}
+
 function FeatureCard({
   icon,
   title,
@@ -249,13 +293,11 @@ function FeatureCard({
 }
 
 function FeatureSection({
-  label,
   title,
   description,
   snippet,
   reversed,
 }: {
-  label: string;
   title: string;
   description: React.ReactNode;
   snippet: React.ReactNode;
@@ -265,7 +307,6 @@ function FeatureSection({
     <section className="mx-auto max-w-6xl px-6 py-14 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
         <div className={reversed ? 'md:order-2' : ''}>
-          <p className="mb-4 font-mono text-xs tracking-widest uppercase text-accent">{label}</p>
           <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-foreground mb-5 text-balance">
             {title}
           </h2>

@@ -1,23 +1,61 @@
 @import 'tailwindcss';
 
-@theme {
-  /* Palette: warm paper, warm charcoal, muted brick red */
-  --color-background: #f6f3ec;
-  --color-foreground: #26211d;
-  --color-muted: #6f6760;
-  --color-card: #fdfbf7;
-  --color-border: #e5dfd3;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  --color-accent: #b8402e;
-  --color-accent-strong: #99321f;
-  --color-accent-soft: #f2e4de;
+/* Palette: warm paper, warm charcoal, muted brick red */
+:root {
+  --background: #f6f3ec;
+  --foreground: #26211d;
+  --muted: #6f6760;
+  --card: #fdfbf7;
+  --border: #e5dfd3;
+
+  --accent: #b8402e;
+  --accent-strong: #99321f;
+  --accent-soft: #f2e4de;
 
   /* Dark surfaces (nav, footer, terminal) */
-  --color-ink: #211d1a;
-  --color-ink-soft: #2e2a26;
-  --color-ink-border: #3b3630;
-  --color-ink-muted: #a39b91;
-  --color-ink-foreground: #f6f3ec;
+  --ink: #211d1a;
+  --ink-soft: #2e2a26;
+  --ink-border: #3b3630;
+  --ink-muted: #a39b91;
+  --ink-foreground: #f6f3ec;
+}
+
+.dark {
+  --background: #171412;
+  --foreground: #ede8e0;
+  --muted: #a49b90;
+  --card: #201c19;
+  --border: #353029;
+
+  --accent: #d9705a;
+  --accent-strong: #e58a76;
+  --accent-soft: #33231e;
+
+  --ink: #100e0c;
+  --ink-soft: #1d1916;
+  --ink-border: #322d27;
+  --ink-muted: #a39b91;
+  --ink-foreground: #f6f3ec;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-border: var(--ink-border);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-foreground: var(--ink-foreground);
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-serif: var(--font-instrument-serif), Georgia, serif;
@@ -25,22 +63,25 @@
 }
 
 html {
-  background: var(--color-background);
+  background: var(--background);
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 ::selection {
-  background: var(--color-accent-soft);
-  color: var(--color-accent-strong);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
 }
 
 *::-webkit-scrollbar {
@@ -52,17 +93,17 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--border);
   border-radius: 999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted);
+  background: var(--muted);
 }
 
 /* Accessible focus states — red outline per brand */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 2px;
 }

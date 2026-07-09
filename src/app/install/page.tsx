@@ -20,9 +20,6 @@ export default function InstallPage() {
     <div className="mx-auto max-w-6xl px-6">
       <div className="max-w-3xl pt-20 md:pt-28 pb-24">
         <header className="mb-16 md:mb-20">
-          <p className="mb-5 font-mono text-xs tracking-widest uppercase text-accent">
-            Get started
-          </p>
           <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-foreground text-balance">
             Installation
           </h1>
