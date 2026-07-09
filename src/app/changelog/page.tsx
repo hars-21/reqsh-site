@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "What's New",
@@ -56,7 +57,10 @@ function renderInline(text: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`')) {
       return (
-        <code key={i} className="rounded bg-white/6 px-1.5 py-0.5 font-mono text-sm text-white">
+        <code
+          key={i}
+          className="rounded bg-accent-soft px-1.5 py-0.5 font-mono text-sm text-accent-strong"
+        >
           {part.slice(1, -1)}
         </code>
       );
@@ -74,37 +78,45 @@ export default async function ChangelogPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6">
-      <div className="max-w-3xl pt-24 pb-40">
-        <header className="mb-24">
-          <h1 className="text-5xl font-bold tracking-tighter text-white md:text-6xl">
-            What&apos;s New
+      <div className="max-w-3xl pt-20 md:pt-28 pb-24">
+        <header className="mb-16 md:mb-20">
+          <p className="mb-5 font-mono text-xs tracking-widest uppercase text-accent">Changelog</p>
+          <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-foreground text-balance">
+            What&apos;s new
           </h1>
-          <p className="mt-4 text-xl leading-relaxed font-medium text-[#888888]">
+          <p className="mt-6 text-lg text-muted leading-relaxed text-pretty">
             Every release of reqsh, from the latest features to the smallest fixes.
           </p>
         </header>
 
-        <div className="space-y-20">
+        <div className="flex flex-col gap-6">
           {releases.map((release, i) => (
-            <section key={release.version}>
-              <div className="mb-3 flex items-baseline gap-4">
-                <h2 className="text-2xl font-bold tracking-tight text-white font-mono">
+            <section
+              key={release.version}
+              className="rounded-2xl bg-card border border-border p-6 md:p-8 shadow-[0_1px_2px_rgba(38,33,29,0.05)]"
+            >
+              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                <h2 className="font-mono text-xl font-semibold tracking-tight text-foreground">
                   v{release.version}
                 </h2>
                 {i === 0 && (
-                  <span className="text-xs font-medium tracking-wide text-accent uppercase">
+                  <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium tracking-wide text-accent-strong uppercase">
                     Latest
                   </span>
                 )}
+                <time className="ml-auto font-mono text-sm text-muted">
+                  {formatDate(release.date)}
+                </time>
               </div>
-              <time className="block font-mono text-sm text-[#555555]">
-                {formatDate(release.date)}
-              </time>
 
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-5 flex flex-col gap-2.5">
                 {release.items.map((item, j) => (
-                  <li key={j} className="text-lg leading-relaxed text-[#888888]">
-                    {renderInline(item)}
+                  <li key={j} className="flex gap-3 leading-relaxed text-muted">
+                    <span
+                      className="mt-2.5 h-1 w-3 shrink-0 rounded-full bg-accent/50"
+                      aria-hidden="true"
+                    />
+                    <span>{renderInline(item)}</span>
                   </li>
                 ))}
               </ul>
@@ -112,26 +124,15 @@ export default async function ChangelogPage() {
           ))}
         </div>
 
-        <div className="mt-24">
+        <div className="mt-16">
           <a
             href="https://github.com/hars-21/reqsh/releases"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-[#555555] transition-snappy hover:text-white"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-snappy hover:text-accent"
           >
             View all releases on GitHub
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M7 17l9.2-9.2M17 17V7H7" />
-            </svg>
+            <ArrowUpRight size={14} aria-hidden="true" />
           </a>
         </div>
       </div>
