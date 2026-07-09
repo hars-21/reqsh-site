@@ -18,60 +18,60 @@ rerun 3`;
   };
 
   return (
-    <div className="relative group rounded-2xl border border-white/8 bg-[#050505] shadow-[0_0_100px_-20px_rgba(255,51,51,0.15)] overflow-hidden transition-snappy hover:shadow-[0_0_120px_-20px_rgba(255,51,51,0.25)] hover:border-white/12">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/4 bg-surface/50">
+    <div className="group relative overflow-hidden rounded-2xl border border-terminal-border bg-terminal shadow-[0_0_100px_-20px_color-mix(in_srgb,var(--accent)_25%,transparent)] transition-snappy hover:shadow-[0_0_120px_-20px_color-mix(in_srgb,var(--accent)_35%,transparent)]">
+      <div className="flex items-center justify-between border-b border-terminal-border px-5 py-3.5">
         <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-white/10" />
-          <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-white/10" />
-          <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-white/10" />
+          <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+          <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+          <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
         </div>
-        <div className="absolute inset-0 flex justify-center pointer-events-none items-center h-11">
-          <span className="text-xs text-[#888888] font-medium tracking-widest uppercase">
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex h-11 items-center justify-center">
+          <span className="text-xs font-medium tracking-widest text-terminal-muted uppercase">
             reqsh
           </span>
         </div>
         <button
           onClick={handleCopy}
-          className="relative z-10 p-1.5 rounded-md bg-transparent text-[#888888] opacity-0 group-hover:opacity-100 transition-snappy hover:bg-white/10 hover:text-white"
+          className="relative z-10 rounded-md p-1.5 text-terminal-muted opacity-0 transition-snappy group-hover:opacity-100 hover:bg-white/10 hover:text-terminal-foreground"
           aria-label="Copy demo commands"
         >
-          {copied ? <Check size={16} className="text-accent" /> : <Copy size={16} />}
+          {copied ? <Check size={16} className="text-terminal-accent" /> : <Copy size={16} />}
         </button>
       </div>
 
-      <div className="p-6 md:p-8 font-mono text-sm leading-8 overflow-x-auto selection:bg-accent/30">
+      <div className="overflow-x-auto p-6 font-mono text-sm leading-8 md:p-8">
         <Prompt shell="reqsh">
-          <span className="text-white">base</span>
-          <span className="text-[#888888]">https://api.example.com</span>
+          <span className="text-terminal-foreground">base</span>
+          <span className="text-terminal-muted">https://api.example.com</span>
         </Prompt>
         <Prompt shell="reqsh">
-          <span className="text-white">header</span>
-          <span className="text-[#888888]">Authorization Bearer tok_abc</span>
+          <span className="text-terminal-foreground">header</span>
+          <span className="text-terminal-muted">Authorization Bearer tok_abc</span>
         </Prompt>
 
         <div className="mt-6" />
         <Prompt shell="reqsh">
-          <span className="text-accent font-semibold">GET</span>
-          <span className="text-white">/users</span>
+          <span className="font-semibold text-terminal-accent">GET</span>
+          <span className="text-terminal-foreground">/users</span>
         </Prompt>
         <Prompt shell=".....">
-          <span className="text-white">::send</span>
+          <span className="text-terminal-foreground">::send</span>
         </Prompt>
 
-        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">
-          HTTP/1.1 200 OK <span className="text-[#888888] font-normal">- 142ms</span>
+        <div className="mt-2 font-medium tracking-wide text-terminal-success">
+          HTTP/1.1 200 OK <span className="font-normal text-terminal-muted">- 142ms</span>
         </div>
-        <div className="text-[#888888] mb-2">content-type: application/json</div>
-        <pre className="text-white mt-1">{`[
+        <div className="mb-2 text-terminal-muted">content-type: application/json</div>
+        <pre className="mt-1 text-terminal-foreground">{`[
   { "id": 1, "name": "Alice" },
   { "id": 2, "name": "Bob" }
 ]`}</pre>
 
         <div className="mt-6" />
         <Prompt shell="reqsh">
-          <span className="text-white">history</span>
+          <span className="text-terminal-foreground">history</span>
         </Prompt>
-        <div className="text-[#888888] mt-1 leading-6">
+        <div className="mt-1 leading-6 text-terminal-muted">
           <div>base https://api.example.com</div>
           <div>header Authorization Bearer tok_abc</div>
           <div>GET /users</div>
@@ -79,16 +79,16 @@ rerun 3`;
 
         <div className="mt-6" />
         <Prompt shell="reqsh">
-          <span className="text-white">rerun</span>
-          <span className="text-[#888888]">3</span>
+          <span className="text-terminal-foreground">rerun</span>
+          <span className="text-terminal-muted">3</span>
         </Prompt>
-        <div className="mt-2 text-[#4ADE80] font-medium tracking-wide">
-          HTTP/1.1 200 OK <span className="text-[#888888] font-normal">- 98ms</span>
+        <div className="mt-2 font-medium tracking-wide text-terminal-success">
+          HTTP/1.1 200 OK <span className="font-normal text-terminal-muted">- 98ms</span>
         </div>
 
         <div className="mt-6 flex items-center">
-          <span className="text-accent font-bold">reqsh&gt;&nbsp;</span>
-          <span className="w-2 h-5 bg-white animate-blink" />
+          <span className="font-bold text-terminal-accent">reqsh&gt;&nbsp;</span>
+          <span className="animate-blink h-5 w-2 bg-terminal-foreground" />
         </div>
       </div>
     </div>
@@ -97,8 +97,8 @@ rerun 3`;
 
 function Prompt({ shell, children }: { shell: string; children: React.ReactNode }) {
   return (
-    <div className="flex whitespace-pre gap-2">
-      <span className="text-accent font-bold">{shell}&gt;</span>
+    <div className="flex gap-2 whitespace-pre">
+      <span className="font-bold text-terminal-accent">{shell}&gt;</span>
       {children}
     </div>
   );

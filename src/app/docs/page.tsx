@@ -13,23 +13,23 @@ export default function DocsPage() {
     <div className="mx-auto max-w-6xl px-6">
       <div className="max-w-3xl pt-24 pb-40">
         <header className="mb-20">
-          <h1 className="text-5xl font-bold tracking-tighter text-white">Documentation</h1>
-          <p className="mt-6 text-xl text-[#888888] leading-relaxed font-medium">
+          <h1 className="text-5xl font-bold tracking-tighter text-foreground">Documentation</h1>
+          <p className="mt-6 text-xl text-muted-foreground leading-relaxed font-medium">
             Master the interactive HTTP shell. Learn how to install, configure your environment, and
             execute requests efficiently.
           </p>
         </header>
 
         <section id="getting-started" className="mb-32">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Getting Started</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-10">Getting Started</h2>
           <div className="space-y-16">
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">1. Install reqsh</h3>
-              <p className="text-[#888888] text-lg leading-relaxed mb-4">
+              <h3 className="text-xl font-bold text-foreground mb-4">1. Install reqsh</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                 Head over to the{' '}
                 <Link
                   href="/install"
-                  className="text-white border-b border-white/20 hover:border-accent hover:text-accent transition-snappy pb-0.5"
+                  className="text-foreground border-b border-border hover:border-accent hover:text-accent transition-snappy pb-0.5"
                 >
                   installation guide
                 </Link>{' '}
@@ -37,10 +37,10 @@ export default function DocsPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">2. Start the shell</h3>
-              <p className="text-[#888888] text-lg leading-relaxed mb-6">
+              <h3 className="text-xl font-bold text-foreground mb-4">2. Start the shell</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 Simply type{' '}
-                <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+                <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
                   reqsh
                 </code>{' '}
                 in your terminal. This drops you into the interactive REPL.
@@ -48,18 +48,18 @@ export default function DocsPage() {
               <CodeBlock lines={['reqsh']} />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">3. Set a base URL</h3>
-              <p className="text-[#888888] text-lg leading-relaxed mb-6">
+              <h3 className="text-xl font-bold text-foreground mb-4">3. Set a base URL</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 Define your target host. All subsequent requests in this session will be appended to
                 this base URL automatically.
               </p>
               <CodeBlock lines={['reqsh> base https://api.example.com']} />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">4. Send a request</h3>
-              <p className="text-[#888888] text-lg leading-relaxed mb-6">
+              <h3 className="text-xl font-bold text-foreground mb-4">4. Send a request</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 Type the HTTP method and the relative path. Then execute it using the special{' '}
-                <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+                <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
                   ::send
                 </code>{' '}
                 command.
@@ -70,27 +70,27 @@ export default function DocsPage() {
         </section>
 
         <section id="requests" className="mb-32">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Sending Requests</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6">Sending Requests</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
             The shell supports building complex requests step-by-step. Start with the method and
             path. HTTP methods are case-insensitive -{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               GET
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               POST
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               PUT
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               PATCH
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               DELETE
             </code>{' '}
             are all supported. You can also use absolute URLs — no base URL required. Add headers on
@@ -105,9 +105,9 @@ export default function DocsPage() {
               '.....> ::send',
             ]}
           />
-          <div className="mt-6 text-[#888888] text-lg leading-relaxed">
+          <div className="mt-6 text-muted-foreground text-lg leading-relaxed">
             Response time is displayed after every request:{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               200 OK - 142ms
             </code>
             . JSON responses are automatically pretty-printed with colored syntax.
@@ -115,14 +115,14 @@ export default function DocsPage() {
         </section>
 
         <section id="variables" className="mb-32">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Variables</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6">Variables</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
             Store values with{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               set
             </code>{' '}
             and reference them anywhere in your request using{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               {'{{name}}'}
             </code>
             . Variables are interpolated at request time.
@@ -139,10 +139,10 @@ export default function DocsPage() {
         </section>
 
         <section id="query-params" className="mb-32">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Query Parameters</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6">Query Parameters</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
             Add query parameters with{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               param:
             </code>{' '}
             lines. Values are URL-encoded automatically.
@@ -158,8 +158,8 @@ export default function DocsPage() {
         </section>
 
         <section id="save-run" className="mb-32">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Save &amp; Run</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6">Save &amp; Run</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
             Save a request to session memory after executing it, then run it again instantly without
             retyping.
           </p>
@@ -175,40 +175,40 @@ export default function DocsPage() {
         </section>
 
         <section id="commands">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Built-in Commands</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6">Built-in Commands</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-10">
             Beyond standard HTTP methods (
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               GET
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               POST
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               PUT
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               PATCH
             </code>
             ,{' '}
-            <code className="text-white bg-white/5 px-1.5 py-0.5 rounded font-mono text-sm">
+            <code className="text-foreground bg-muted px-1.5 py-0.5 rounded font-mono text-sm">
               DELETE
             </code>
             ), reqsh provides specific REPL commands to manage your session.
           </p>
-          <div className="rounded-2xl border border-white/8 bg-[#050505] overflow-hidden">
+          <div className="rounded-2xl border border-border bg-card overflow-hidden">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-white/8 bg-white/2">
-                  <th className="px-6 py-4 text-sm font-semibold text-white">Command</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-white">Usage</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-white">Description</th>
+                <tr className="border-b border-border bg-muted">
+                  <th className="px-6 py-4 text-sm font-semibold text-foreground">Command</th>
+                  <th className="px-6 py-4 text-sm font-semibold text-foreground">Usage</th>
+                  <th className="px-6 py-4 text-sm font-semibold text-foreground">Description</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/4">
+              <tbody className="divide-y divide-border">
                 <Row
                   cmd="base"
                   usage="base <url>"
@@ -258,10 +258,10 @@ export default function DocsPage() {
 
 function Row({ cmd, usage, desc }: { cmd: string; usage: string; desc: string }) {
   return (
-    <tr className="hover:bg-white/2 transition-snappy">
-      <td className="px-6 py-5 font-mono text-white font-medium">{cmd}</td>
-      <td className="px-6 py-5 font-mono text-[#888888] text-sm">{usage}</td>
-      <td className="px-6 py-5 text-[#888888] text-base">{desc}</td>
+    <tr className="hover:bg-muted transition-snappy">
+      <td className="px-6 py-5 font-mono text-foreground font-medium">{cmd}</td>
+      <td className="px-6 py-5 font-mono text-muted-foreground text-sm">{usage}</td>
+      <td className="px-6 py-5 text-muted-foreground text-base">{desc}</td>
     </tr>
   );
 }

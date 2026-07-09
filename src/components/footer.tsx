@@ -1,13 +1,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+const resources = [
+  { label: 'Documentation', href: '/docs' },
+  { label: 'Installation', href: '/install' },
+  { label: 'Changelog', href: '/changelog' },
+];
+
+const community = [
+  { label: 'GitHub', href: 'https://github.com/hars-21/reqsh' },
+  { label: 'Issues', href: 'https://github.com/hars-21/reqsh/issues' },
+  { label: 'Releases (v0.2.0)', href: 'https://github.com/hars-21/reqsh/releases' },
+  { label: 'License', href: 'https://github.com/hars-21/reqsh/blob/main/LICENSE' },
+];
+
 export default function Footer() {
   return (
-    <footer className="mt-40 border-t border-white/4 bg-[#000000]">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex flex-col md:flex-row justify-between gap-16">
+    <footer className="mt-32 border-t border-border">
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
+        <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-16">
           <div className="max-w-xs">
-            <span className="font-mono text-xl font-semibold tracking-tight text-white flex items-center gap-2.5">
+            <span className="flex items-center gap-2.5 font-mono text-lg font-semibold tracking-tight text-foreground">
               <Image
                 src="/logo.png"
                 alt="reqsh logo"
@@ -17,93 +30,51 @@ export default function Footer() {
               />
               reqsh
             </span>
-            <p className="mt-5 text-[#888888] leading-relaxed text-sm">
-              An interactive, persistent shell for HTTP requests. Built with Rust for ultimate speed
-              and simplicity.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              An interactive, persistent shell for HTTP requests. Built with Rust for speed and
+              simplicity.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-16">
+          <div className="flex flex-wrap gap-12 md:gap-20">
             <div>
-              <h3 className="text-sm font-semibold text-white mb-6">Resources</h3>
-              <ul className="space-y-4">
-                <li>
-                  <Link
-                    href="/docs"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    Documentation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/install"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    Installation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/changelog"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    What's New
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/hars-21/reqsh/releases"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    Releases (v0.1.5)
-                  </a>
-                </li>
+              <h3 className="mb-5 text-sm font-semibold text-foreground">Resources</h3>
+              <ul className="space-y-3.5">
+                {resources.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground transition-snappy hover:text-foreground"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white mb-6">Community</h3>
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    href="https://github.com/hars-21/reqsh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/hars-21/reqsh/issues"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    Issues
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/hars-21/reqsh/blob/main/LICENSE"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-[#888888] hover:text-white transition-snappy"
-                  >
-                    License
-                  </a>
-                </li>
+              <h3 className="mb-5 text-sm font-semibold text-foreground">Community</h3>
+              <ul className="space-y-3.5">
+                {community.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground transition-snappy hover:text-foreground"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-white/4 text-[#888888] text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} reqsh. Open source (MIT).</p>
-          <p>Built with Rust. Available on macOS, Linux, and Windows.</p>
+          <p className="font-mono text-xs">Rust · macOS · Linux · Windows</p>
         </div>
       </div>
     </footer>
