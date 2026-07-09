@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
@@ -13,6 +13,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
 });
 
 const siteUrl = 'https://reqsh.dev';
@@ -130,24 +137,26 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-black`}>
-      <body className="min-h-screen flex flex-col antialiased bg-gradient-to-br from-black via-[#0a0505] to-[#050000] relative overflow-x-hidden">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} bg-background`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('reqsh-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        
-        {/* Animated abstract background blobs */}
-        <div className="gradient-blob-1" />
-        <div className="gradient-blob-2" />
-        <div className="gradient-blob-3" />
-        
-        <div className="relative-content">
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
         <SpeedInsights />
       </body>
     </html>

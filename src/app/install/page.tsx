@@ -7,21 +7,33 @@ export const metadata: Metadata = {
     'Install reqsh - use the install script, download a prebuilt binary or build from source.',
 };
 
+function InlineCode({ children }: { children: React.ReactNode }) {
+  return (
+    <code className="rounded bg-accent-soft px-1.5 py-0.5 font-mono text-[0.85em] text-accent-strong">
+      {children}
+    </code>
+  );
+}
+
 export default function InstallPage() {
   return (
     <div className="mx-auto max-w-6xl px-6">
-      <div className="max-w-3xl pt-24 pb-40">
-        <header className="mb-20">
-          <h1 className="text-5xl font-bold tracking-tighter text-white">Installation</h1>
-          <p className="mt-6 text-xl text-[#888888] leading-relaxed font-medium">
+      <div className="max-w-3xl pt-20 md:pt-28 pb-24">
+        <header className="mb-16 md:mb-20">
+          <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-foreground text-balance">
+            Installation
+          </h1>
+          <p className="mt-6 text-lg text-muted leading-relaxed text-pretty">
             Get reqsh running on your system in seconds. Choose the method that best fits your
             workflow.
           </p>
         </header>
 
-        <section id="install-script" className="mb-24">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Install Script</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-6">
+        <section id="install-script" className="mb-16 md:mb-20">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-foreground mb-5">
+            Install script
+          </h2>
+          <p className="text-muted leading-relaxed mb-6">
             The fastest and recommended way to install. This script detects your OS and
             architecture, downloads the latest binary, and places it in your PATH.
           </p>
@@ -32,33 +44,27 @@ export default function InstallPage() {
           />
         </section>
 
-        <section id="binary" className="mb-24">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Prebuilt Binary</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-6">
+        <section id="binary" className="mb-16 md:mb-20">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-foreground mb-5">
+            Prebuilt binary
+          </h2>
+          <p className="text-muted leading-relaxed mb-6">
             Download the latest binary for your platform from the{' '}
             <a
               href="https://github.com/hars-21/reqsh/releases"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white border-b border-white/20 hover:border-accent hover:text-accent transition-snappy pb-0.5"
+              className="text-accent underline underline-offset-4 decoration-accent/40 transition-snappy hover:decoration-accent"
             >
               GitHub Releases
             </a>{' '}
             page. Available for macOS (Intel &amp; Silicon), Linux (x86_64), and Windows (x86_64).
           </p>
-          <div className="mb-6 space-y-4 text-[#888888] text-lg">
-            <p>
-              <span className="text-white font-bold mr-3">1.</span>Download the binary for your
-              platform.
-            </p>
-            <p>
-              <span className="text-white font-bold mr-3">2.</span>Move it to a directory included
-              in your system PATH.
-            </p>
-            <p>
-              <span className="text-white font-bold mr-3">3.</span>Grant execution permissions.
-            </p>
-          </div>
+          <ol className="mb-6 flex flex-col gap-3 text-muted list-decimal list-inside marker:text-accent marker:font-semibold">
+            <li>Download the binary for your platform.</li>
+            <li>Move it to a directory included in your system PATH.</li>
+            <li>Grant execution permissions.</li>
+          </ol>
           <CodeBlock
             lines={[
               '# macOS / Linux',
@@ -67,28 +73,23 @@ export default function InstallPage() {
               'reqsh',
             ]}
           />
-          <p className="mt-4 text-[#888888] text-lg">
-            Windows users: place{' '}
-            <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
-              reqsh.exe
-            </code>{' '}
-            in a directory listed in your{' '}
-            <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
-              %PATH%
-            </code>
-            .
+          <p className="mt-5 text-muted leading-relaxed">
+            Windows users: place <InlineCode>reqsh.exe</InlineCode> in a directory listed in your{' '}
+            <InlineCode>%PATH%</InlineCode>.
           </p>
         </section>
 
-        <section id="source" className="mb-24">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Build from Source</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-6">
+        <section id="source" className="mb-16 md:mb-20">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-foreground mb-5">
+            Build from source
+          </h2>
+          <p className="text-muted leading-relaxed mb-6">
             If you want to compile reqsh yourself, you&apos;ll need the{' '}
             <a
               href="https://rustup.rs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white border-b border-white/20 hover:border-accent hover:text-accent transition-snappy pb-0.5"
+              className="text-accent underline underline-offset-4 decoration-accent/40 transition-snappy hover:decoration-accent"
             >
               Rust toolchain
             </a>{' '}
@@ -101,18 +102,16 @@ export default function InstallPage() {
               'cargo build --release',
             ]}
           />
-          <p className="mt-6 text-[#888888] text-lg">
-            The binary will be at{' '}
-            <code className="text-white bg-white/5 px-2 py-1 rounded font-mono text-sm">
-              target/release/reqsh
-            </code>
-            .
+          <p className="mt-5 text-muted leading-relaxed">
+            The binary will be at <InlineCode>target/release/reqsh</InlineCode>.
           </p>
         </section>
 
         <section id="verify">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">Verify Installation</h2>
-          <p className="text-[#888888] text-lg leading-relaxed mb-6">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-foreground mb-5">
+            Verify installation
+          </h2>
+          <p className="text-muted leading-relaxed mb-6">
             Confirm reqsh is installed and working correctly.
           </p>
           <CodeBlock lines={['reqsh --help']} />
