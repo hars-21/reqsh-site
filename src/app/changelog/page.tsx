@@ -56,7 +56,7 @@ function renderInline(text: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`')) {
       return (
-        <code key={i} className="rounded bg-white/6 px-1.5 py-0.5 font-mono text-sm text-white">
+        <code key={i} className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
           {part.slice(1, -1)}
         </code>
       );
@@ -76,10 +76,10 @@ export default async function ChangelogPage() {
     <div className="mx-auto max-w-6xl px-6">
       <div className="max-w-3xl pt-24 pb-40">
         <header className="mb-24">
-          <h1 className="text-5xl font-bold tracking-tighter text-white md:text-6xl">
+          <h1 className="text-5xl font-bold tracking-tighter text-foreground md:text-6xl">
             What&apos;s New
           </h1>
-          <p className="mt-4 text-xl leading-relaxed font-medium text-[#888888]">
+          <p className="mt-4 text-xl leading-relaxed font-medium text-muted-foreground">
             Every release of reqsh, from the latest features to the smallest fixes.
           </p>
         </header>
@@ -88,7 +88,7 @@ export default async function ChangelogPage() {
           {releases.map((release, i) => (
             <section key={release.version}>
               <div className="mb-3 flex items-baseline gap-4">
-                <h2 className="text-2xl font-bold tracking-tight text-white font-mono">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground font-mono">
                   v{release.version}
                 </h2>
                 {i === 0 && (
@@ -97,13 +97,13 @@ export default async function ChangelogPage() {
                   </span>
                 )}
               </div>
-              <time className="block font-mono text-sm text-[#555555]">
+              <time className="block font-mono text-sm text-muted-foreground">
                 {formatDate(release.date)}
               </time>
 
               <ul className="mt-6 space-y-3">
                 {release.items.map((item, j) => (
-                  <li key={j} className="text-lg leading-relaxed text-[#888888]">
+                  <li key={j} className="text-lg leading-relaxed text-muted-foreground">
                     {renderInline(item)}
                   </li>
                 ))}
@@ -117,7 +117,7 @@ export default async function ChangelogPage() {
             href="https://github.com/hars-21/reqsh/releases"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-[#555555] transition-snappy hover:text-white"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-snappy hover:text-foreground"
           >
             View all releases on GitHub
             <svg

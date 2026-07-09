@@ -16,48 +16,48 @@ export default function CodeBlock({ lines }: { lines: string[] }) {
 
   const highlightLine = (line: string) => {
     if (line.startsWith('#')) {
-      return <span className="text-[#888888]">{line}</span>;
+      return <span className="text-terminal-muted">{line}</span>;
     }
 
     const words = line.split(/(\s+)/);
     return words.map((word, i) => {
       if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(word)) {
         return (
-          <span key={i} className="text-accent font-semibold">
+          <span key={i} className="font-semibold text-terminal-accent">
             {word}
           </span>
         );
       }
       if (['curl', 'git', 'cargo', 'mv', 'chmod', 'reqsh'].includes(word)) {
         return (
-          <span key={i} className="text-white font-semibold">
+          <span key={i} className="font-semibold text-terminal-foreground">
             {word}
           </span>
         );
       }
       if (word === 'reqsh>' || word === '.....>') {
         return (
-          <span key={i} className="text-accent font-bold">
+          <span key={i} className="font-bold text-terminal-accent">
             {word}
           </span>
         );
       }
       if (word.startsWith('https://') || word.startsWith('http://') || word.startsWith('/')) {
         return (
-          <span key={i} className="text-white">
+          <span key={i} className="text-terminal-foreground">
             {word}
           </span>
         );
       }
       if (word.startsWith('-')) {
         return (
-          <span key={i} className="text-[#888888]">
+          <span key={i} className="text-terminal-muted">
             {word}
           </span>
         );
       }
       return (
-        <span key={i} className="text-white/80">
+        <span key={i} className="text-terminal-foreground/80">
           {word}
         </span>
       );
@@ -65,7 +65,7 @@ export default function CodeBlock({ lines }: { lines: string[] }) {
   };
 
   return (
-    <div className="relative group rounded-xl border border-white/8 bg-[#050505] font-mono text-[15px] leading-relaxed overflow-hidden transition-snappy hover:border-white/15">
+    <div className="group relative overflow-hidden rounded-xl border border-terminal-border bg-terminal font-mono text-[15px] leading-relaxed transition-snappy hover:border-white/15">
       <div className="overflow-x-auto p-5">
         {lines.map((line, i) => (
           <div key={i} className="whitespace-pre">
@@ -75,10 +75,10 @@ export default function CodeBlock({ lines }: { lines: string[] }) {
       </div>
       <button
         onClick={handleCopy}
-        className="absolute top-4 right-4 p-2 rounded-lg cursor-pointer bg-white/5 border border-transparent text-[#888888] opacity-0 group-hover:opacity-100 transition-snappy hover:bg-white/10 hover:text-white hover:border-white/10"
+        className="absolute top-4 right-4 cursor-pointer rounded-lg border border-transparent bg-white/5 p-2 text-terminal-muted opacity-0 transition-snappy group-hover:opacity-100 hover:border-white/10 hover:bg-white/10 hover:text-terminal-foreground"
         aria-label="Copy code"
       >
-        {copied ? <Check size={16} className="text-accent" /> : <Copy size={16} />}
+        {copied ? <Check size={16} className="text-terminal-accent" /> : <Copy size={16} />}
       </button>
     </div>
   );

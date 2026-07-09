@@ -1,21 +1,89 @@
 @import 'tailwindcss';
 
-@theme {
-  --color-accent: #ff3333;
-  --color-surface: #0a0a0a;
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light theme */
+  --background: #f7f7f8;
+  --foreground: #17171a;
+  --card: #ffffff;
+  --card-foreground: #17171a;
+  --muted: rgba(23, 23, 26, 0.05);
+  --muted-foreground: #64646c;
+  --border: rgba(23, 23, 26, 0.09);
+  --accent: #d91f1f;
+  --accent-foreground: #ffffff;
+  --success: #158a3d;
+
+  /* Terminal surfaces stay dark in both themes */
+  --terminal: #0b0b0d;
+  --terminal-foreground: #ececee;
+  --terminal-muted: #85868e;
+  --terminal-border: rgba(255, 255, 255, 0.09);
+  --terminal-accent: #ff4438;
+  --terminal-success: #4ade80;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --card: #101012;
+  --card-foreground: #f4f4f5;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #8f9099;
+  --border: rgba(255, 255, 255, 0.09);
+  --accent: #ff4438;
+  --accent-foreground: #ffffff;
+  --success: #4ade80;
+
+  --terminal: #0d0d10;
+  --terminal-border: rgba(255, 255, 255, 0.09);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+
+  --color-terminal: var(--terminal);
+  --color-terminal-foreground: var(--terminal-foreground);
+  --color-terminal-muted: var(--terminal-muted);
+  --color-terminal-border: var(--terminal-border);
+  --color-terminal-accent: var(--terminal-accent);
+  --color-terminal-success: var(--terminal-success);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+  --radius-2xl: calc(var(--radius) + 0.5rem);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(255, 51, 51, 0.3);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--foreground);
 }
 
 *::-webkit-scrollbar {
@@ -27,7 +95,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--foreground) 15%, transparent);
   border-radius: 999px;
 }
 
@@ -45,4 +113,27 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* Ambient hero glow - Raycast-style diagonal red beams, token aware */
+.hero-glow {
+  background:
+    radial-gradient(
+      ellipse 60% 45% at 50% -5%,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 35% 30% at 78% 8%,
+      color-mix(in srgb, var(--accent) 7%, transparent),
+      transparent 70%
+    );
+}
+
+.section-glow {
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 100%,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    transparent 70%
+  );
 }
