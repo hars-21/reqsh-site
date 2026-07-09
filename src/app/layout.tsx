@@ -130,15 +130,24 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-black`}>
+      <body className="min-h-screen flex flex-col antialiased bg-gradient-to-br from-black via-[#0a0505] to-[#050000] relative overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        
+        {/* Animated abstract background blobs */}
+        <div className="gradient-blob-1" />
+        <div className="gradient-blob-2" />
+        <div className="gradient-blob-3" />
+        
+        <div className="relative-content">
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+        
         <SpeedInsights />
       </body>
     </html>
