@@ -16,7 +16,7 @@ const community = [
 
 export default function Footer() {
   return (
-    <footer className="mt-32 border-t border-border">
+    <footer className="mt-32 border-t border-border" role="contentinfo">
       <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
         <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-16">
           <div className="max-w-xs">
@@ -27,17 +27,18 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="rounded-md"
+                priority
               />
               reqsh
             </span>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-foreground">
               An interactive, persistent shell for HTTP requests. Built with Rust for speed and
               simplicity.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-12 md:gap-20">
-            <div>
+            <nav aria-label="Resources">
               <h3 className="mb-5 text-sm font-semibold text-foreground">Resources</h3>
               <ul className="space-y-3.5">
                 {resources.map((item) => (
@@ -51,8 +52,8 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div>
+            </nav>
+            <nav aria-label="Community">
               <h3 className="mb-5 text-sm font-semibold text-foreground">Community</h3>
               <ul className="space-y-3.5">
                 {community.map((item) => (
@@ -68,11 +69,11 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-foreground md:flex-row">
           <p>© {new Date().getFullYear()} reqsh. Open source (MIT).</p>
           <p className="font-mono text-xs">Rust · macOS · Linux · Windows</p>
         </div>

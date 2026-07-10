@@ -38,7 +38,16 @@ export function StartupVisual() {
   return (
     <div
       onClick={triggerAnimation}
-      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-4 flex flex-col items-center justify-center cursor-pointer select-none group/startup transition-all duration-300 hover:border-accent/30 hover:bg-muted/50"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerAnimation();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Test startup latency"
+      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-4 flex flex-col items-center justify-center cursor-pointer select-none group/startup transition-all duration-300 hover:border-accent/30 hover:bg-muted/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <div className="relative flex items-center justify-center">
         <svg className="w-28 h-28 transform -rotate-90">
@@ -121,7 +130,16 @@ export function PrettyPrintVisual() {
   return (
     <div
       onClick={() => setIsPretty(!isPretty)}
-      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-3 flex flex-col cursor-pointer select-none overflow-hidden group/visual transition-all duration-300 hover:border-accent/30 hover:bg-muted/50"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsPretty(!isPretty);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Toggle JSON view. Currently showing ${isPretty ? 'pretty' : 'raw'} view.`}
+      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-3 flex flex-col cursor-pointer select-none overflow-hidden group/visual transition-all duration-300 hover:border-accent/30 hover:bg-muted/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <div className="flex justify-between items-center mb-2">
         <span className="text-[10px] text-muted-foreground tracking-widest">
@@ -188,7 +206,16 @@ export function SessionHistoryVisual() {
           <div
             key={item.id}
             onClick={() => handleRerun(item.id)}
-            className={`flex flex-col justify-between rounded-lg p-3 border transition-all cursor-pointer ${
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleRerun(item.id);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label={`Rerun command: ${item.cmd}`}
+            className={`flex flex-col justify-between rounded-lg p-3 border transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
               activeIndex === item.id
                 ? 'bg-accent/15 border-accent/40 text-accent shadow-[0_0_12px_rgba(239,68,68,0.1)]'
                 : 'bg-muted/30 border-border/60 text-muted-foreground hover:bg-muted/50 hover:text-foreground hover:border-border'
@@ -232,7 +259,16 @@ export function BuiltInTimingVisual() {
   return (
     <div
       onClick={simulatePing}
-      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-4 flex flex-col justify-between cursor-pointer select-none group/timing transition-all duration-300 hover:border-accent/30 hover:bg-muted/50"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          simulatePing();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Simulate a ping request"
+      className="w-full h-48 mt-4 rounded-lg border border-border/60 bg-muted/30 p-4 flex flex-col justify-between cursor-pointer select-none group/timing transition-all duration-300 hover:border-accent/30 hover:bg-muted/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <div className="flex items-center justify-between bg-background/60 border border-border/60 px-3 py-2 rounded-lg">
         <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-xs">

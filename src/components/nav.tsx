@@ -29,10 +29,20 @@ export default function Nav() {
     <header
       className={`sticky top-0 z-50 w-full bg-background transition-colors ${scrolled ? 'border-b border-border/60' : ''}`}
     >
-      <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+      <nav
+        className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6"
+        aria-label="Main navigation"
+      >
         <div className="flex items-center gap-1">
           <Link href="/" className="group flex items-center gap-2.5 px-2.5 py-1.5">
-            <Image src="/logo.png" alt="reqsh logo" width={24} height={24} className="rounded-md" />
+            <Image
+              src="/logo.png"
+              alt="reqsh logo"
+              width={24}
+              height={24}
+              className="rounded-md"
+              loading="eager"
+            />
             <span className="font-mono text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
               reqsh
             </span>

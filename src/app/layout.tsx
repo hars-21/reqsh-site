@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Geist_Mono } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from 'next-themes';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
@@ -9,11 +10,13 @@ import './globals.css';
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const siteUrl = 'https://reqsh.dev';
@@ -49,20 +52,11 @@ export const metadata: Metadata = {
     locale: 'en_US',
     siteName: 'reqsh',
     url: siteUrl,
-    images: [
-      {
-        url: '/banner.svg',
-        width: 1200,
-        height: 630,
-        alt: 'reqsh | Interactive HTTP Shell',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'reqsh | Interactive HTTP REPL',
     description: 'An interactive REPL shell for HTTP requests. Built in Rust. Open source.',
-    images: ['/banner.svg'],
   },
   robots: {
     index: true,
@@ -70,6 +64,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    types: {
+      'application/rss+xml': `${siteUrl}/changelog.xml`,
+    },
   },
 
   icons: {
@@ -109,26 +106,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'reqsh',
-    applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'macOS, Linux, Windows',
-    description:
-      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
-    url: siteUrl,
-    author: {
-      '@type': 'Person',
-      name: 'hars-21',
-      url: 'https://github.com/hars-21',
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'reqsh',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'macOS, Linux, Windows',
+      description:
+        'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
+      url: siteUrl,
+      downloadUrl: `${siteUrl}/docs/install`,
+      installationUrl: `${siteUrl}/docs/install`,
+      author: {
+        '@type': 'Person',
+        name: 'hars-21',
+        url: 'https://github.com/hars-21',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      screenshot: `${siteUrl}/opengraph-image`,
+      softwareVersion: '0.2.0',
+      applicationSuite: 'Terminal',
+      featureList: [
+        'Interactive REPL for HTTP requests',
+        'Persistent base URLs and headers',
+        'Variable interpolation',
+        'Request history and rerun',
+        'Case-insensitive HTTP methods',
+        'Pretty-printed JSON output',
+        'Built-in request timing',
+      ],
+      repo: 'https://github.com/hars-21/reqsh',
     },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'reqsh',
+      url: siteUrl,
+      description: 'An interactive REPL shell for HTTP requests. Built in Rust. Open source.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'reqsh',
+        url: siteUrl,
+      },
     },
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Documentation',
+          item: `${siteUrl}/docs`,
+        },
+      ],
+    },
+  ];
 
   return (
     <html
@@ -137,6 +181,13 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://raw.githubusercontent.com" />
+        <link rel="preconnect" href="https://api.github.com" />
+        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+        <link rel="dns-prefetch" href="https://api.github.com" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly docs" />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <script
           type="application/ld+json"
@@ -148,10 +199,19 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+          >
+            Skip to content
+          </a>
           <Nav />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>

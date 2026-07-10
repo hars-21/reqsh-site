@@ -1,64 +1,156 @@
-<div align="center">
-  <img src="public/banner.svg" alt="reqsh banner" width="600" />
-</div>
+<p align="center">
+  <a href="https://reqsh.dev">
+    <img src="public/logo.png" height="96">
+  </a>
+</p>
 
 <h1 align="center">reqsh</h1>
 
+<p align="center">
+  <strong>The interactive shell for HTTP requests.</strong><br />
+  Set a base URL once. Add headers once. Use variables. Save requests. Re-run from history.
+</p>
+
 <div align="center">
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey)](#)
+[![GitHub Stars](https://img.shields.io/github/stars/hars-21/reqsh?style=social)](https://github.com/hars-21/reqsh)
 
 </div>
 
-**reqsh** is a beautifully crafted, interactive REPL-like terminal shell for making HTTP requests. Built in Rust for maximum speed, it allows you to set a base URL, define headers once, and seamlessly send or re-run requests—so you never have to type the same long `curl` command twice.
+## What is reqsh?
 
-## 🚀 What is reqsh?
-
-`reqsh` acts as a specialized, persistent shell environment just for your APIs. Instead of constructing tedious and verbose commands over and over, you enter a session, configure your environment, and send requests naturally. It remembers your state, tracks your history, and makes exploring or testing APIs directly from the terminal incredibly intuitive and fast.
-
-## ✨ Features
-
-- **Interactive REPL**: A persistent, dedicated shell session for HTTP.
-- **Stateful Environment**: Set base URLs and headers once—they persist throughout your entire session.
-- **Command History**: Cycle through your past requests with ease and immediately re-execute them.
-- **Multi-line Bodies**: Effortlessly build complex JSON bodies using a multi-line input mode.
-- **Auto-completion**: Enjoy context-aware suggestions for commands and paths.
-- **Syntax Highlighting**: Beautiful, color-coded formatting for JSON responses and errors.
-- **Blazing Fast**: Written purely in Rust for instant startup and minimal footprint.
-
-## 💻 Commands
-
-Inside the `reqsh` interactive shell, you use intuitively designed commands to build and send requests:
-
-### Environment Configuration
-
-- `base <url>` — Set the global base URL for the session. All requests will automatically append to this.
-- `header <key> <value>` — Add a persistent header that applies to all subsequent requests.
-
-### Executing Requests
-
-To construct a request, start with the HTTP method and path. You can optionally add local headers or body data on subsequent lines, before typing `::send` to fire it off.
-
-Example:
+`reqsh` is a persistent, interactive REPL shell for making HTTP requests directly from your terminal. Instead of constructing verbose `curl` commands over and over, you enter a session where everything is stateful, your base URL, your headers, your variables.
 
 ```sh
-reqsh> POST /api/users
+$ curl -fsSL https://reqsh.dev/install.sh | sh
+```
+
+## Quick Start
+
+```sh
+# Install
+curl -fsSL https://reqsh.dev/install.sh | sh
+
+# Launch
+reqsh
+```
+
+## Usage
+
+### Set up your environment
+
+```sh
+reqsh> base https://api.example.com
+reqsh> header Authorization Bearer tok_abc123
+```
+
+### Send requests
+
+```sh
+reqsh> GET /users
+reqsh> POST /users
 .....> Content-Type: application/json
 .....>
-.....> { "user": "alice" }
+.....> { "name": "Alice" }
 .....> ::send
 ```
 
-### Session Utilities
+### Use variables
 
-- `history` — View your numbered session history.
-- `rerun <id>` — Instantly re-execute a request from your history list.
-- `help` — Display syntax and command documentation.
-- `exit` — Terminate the shell session.
+```sh
+reqsh> set token eyJhbGciOiJIUzI1NiJ9
+reqsh> GET /users/{{token}}
+reqsh> ::send
+```
 
-## 📄 License
+### Save and replay
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+```sh
+reqsh> save get-users
+reqsh> run get-users
+```
+
+### History and rerun
+
+```sh
+reqsh> history
+1: base https://api.example.com
+2: header Authorization Bearer tok_abc123
+3: GET /users
+
+reqsh> rerun 3
+```
+
+## Features
+
+| Feature               | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| **Persistent REPL**   | Base URLs and headers persist across requests in a session  |
+| **Variables**         | Use `{{variable}}` syntax to interpolate values anywhere    |
+| **History**           | Every command is recorded; rerun any past request instantly |
+| **Save & Run**        | Name requests and replay them with one command              |
+| **Case-insensitive**  | `get`, `GET`, `GeT` — all work the same                     |
+| **Pretty output**     | JSON responses are auto-formatted and syntax-highlighted    |
+| **Built-in timing**   | Every response shows its latency                            |
+| **Multi-line bodies** | Build complex request bodies across multiple lines          |
+| **Blazing fast**      | Written in Rust; launches in milliseconds                   |
+
+## Commands Reference
+
+| Command                            | Description                       |
+| ---------------------------------- | --------------------------------- |
+| `base <url>`                       | Set the session base URL          |
+| `header <key> <value>`             | Add a persistent header           |
+| `set <name> <value>`               | Set a session variable            |
+| `GET/POST/PUT/PATCH/DELETE <path>` | Send an HTTP request              |
+| `::send`                           | Fire the current request          |
+| `save <name>`                      | Save the last request             |
+| `run <name>`                       | Replay a saved request            |
+| `history`                          | Show session history              |
+| `rerun <id>`                       | Re-execute a command from history |
+| `help`                             | Show command docs                 |
+| `exit`                             | Quit the session                  |
+
+## Installation
+
+### macOS / Linux
+
+```sh
+curl -fsSL https://reqsh.dev/install.sh | sh
+```
+
+### From source (requires Rust)
+
+```sh
+git clone https://github.com/hars-21/reqsh.git
+cd reqsh
+cargo install --path .
+```
+
+### Pre-built binaries
+
+Download the latest release for your platform from [GitHub Releases](https://github.com/hars-21/reqsh/releases).
+
+## Documentation
+
+Full docs at **[reqsh.dev/docs](https://reqsh.dev/docs)**
+
+- [Installation](https://reqsh.dev/docs/install) - Platform-specific install instructions
+- [Usage](https://reqsh.dev/docs/usage) - How to use reqsh
+- [Commands](https://reqsh.dev/docs/commands) - Full command reference
+- [Variables](https://reqsh.dev/docs/variables) - Variable interpolation
+- [Changelog](https://reqsh.dev/docs/changelog) - Release history
+
+## Community
+
+- [GitHub Issues](https://github.com/hars-21/reqsh/issues) — Bug reports and feature requests
+- [Releases](https://github.com/hars-21/reqsh/releases) — Binary downloads
+- [Discussions](https://github.com/hars-21/reqsh/discussions) — Questions and ideas
+
+## License
+
+[MIT](https://github.com/hars-21/reqsh/blob/main/LICENSE)

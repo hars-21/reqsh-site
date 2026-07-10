@@ -4,9 +4,29 @@ import MarkdownRenderer from '@/components/markdown-renderer';
 
 export const dynamic = 'force-dynamic';
 
+const siteUrl = 'https://reqsh.dev';
+
 export const metadata: Metadata = {
   title: "What's New",
   description: 'Changelog and release history for reqsh.',
+  alternates: {
+    canonical: `${siteUrl}/docs/changelog`,
+    types: {
+      'application/rss+xml': `${siteUrl}/changelog.xml`,
+    },
+  },
+  openGraph: {
+    title: "What's New | reqsh",
+    description: 'Changelog and release history for reqsh.',
+    type: 'article',
+    url: `${siteUrl}/docs/changelog`,
+    siteName: 'reqsh',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "What's New | reqsh",
+    description: 'Changelog and release history for reqsh.',
+  },
 };
 
 async function fetchChangelog(): Promise<string> {

@@ -38,9 +38,15 @@ export default function Home() {
       <div className="hero-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-184" />
 
       <div className="mx-auto max-w-6xl px-6">
-        <section className="flex flex-col items-center pt-20 pb-16 text-center md:pt-28 md:pb-20">
+        <section
+          className="flex flex-col items-center pt-20 pb-16 text-center md:pt-28 md:pb-20"
+          aria-labelledby="hero-heading"
+        >
           <Reveal delay={0.08}>
-            <h1 className="mt-8 max-w-4xl text-5xl leading-[1.04] font-bold tracking-tighter text-balance text-foreground md:text-7xl lg:text-[5.25rem]">
+            <h1
+              id="hero-heading"
+              className="mt-8 max-w-4xl text-5xl leading-[1.04] font-bold tracking-tighter text-balance text-foreground md:text-7xl lg:text-[5.25rem]"
+            >
               The interactive shell for <span className="text-accent">HTTP</span> requests.
             </h1>
           </Reveal>
@@ -74,8 +80,8 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.32}>
-            <div className="mx-auto mt-9 flex w-120 items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-5 py-3.5 font-mono text-sm relative">
-              <span className="text-terminal-accent">$</span>
+            <div className="mx-auto mt-9 flex w-120 items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-4 py-3.5 font-mono text-sm relative sm:px-5">
+              <span className="text-terminal-accent shrink-0">$</span>
               <span className="whitespace-nowrap text-terminal-foreground">
                 curl -fsSL https://reqsh.dev/install.sh | sh
               </span>
@@ -98,9 +104,12 @@ export default function Home() {
           <TerminalDemo />
         </Reveal>
 
-        <section className="pb-8">
+        <section className="pb-8" aria-labelledby="features-heading">
           <Reveal>
-            <h2 className="mx-auto mt-6 max-w-2xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-5xl">
+            <h2
+              id="features-heading"
+              className="mx-auto mt-6 max-w-2xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-5xl"
+            >
               Everything a terminal-first workflow needs.
             </h2>
           </Reveal>
@@ -205,9 +214,15 @@ export default function Home() {
           </TerminalCard>
         </FeatureRow>
 
-        <section className="border-t border-border py-20 md:py-28">
+        <section
+          className="border-t border-border py-20 md:py-28"
+          aria-labelledby="small-tool-heading"
+        >
           <Reveal>
-            <h2 className="mx-auto mt-6 max-w-xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+            <h2
+              id="small-tool-heading"
+              className="mx-auto mt-6 max-w-xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl"
+            >
               Small tool. Sharp edges filed off.
             </h2>
           </Reveal>
@@ -283,19 +298,25 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden rounded-3xl border border-border bg-card">
+        <section
+          className="relative overflow-hidden rounded-3xl border border-border bg-card"
+          aria-labelledby="cta-heading"
+        >
           <div className="section-glow pointer-events-none absolute inset-0" />
           <div className="relative flex flex-col items-center px-6 py-20 text-center md:py-28">
             <Reveal>
-              <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-5xl">
+              <h2
+                id="cta-heading"
+                className="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-5xl"
+              >
                 Ready to leave curl flags behind?
               </h2>
               <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
                 One command. No config files, no accounts, no runtime. Just a fast shell for your
                 API work.
               </p>
-              <div className="mx-auto mt-9 flex max-w-lg items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-5 py-3.5 font-mono text-sm relative">
-                <span className="text-terminal-accent">$</span>
+              <div className="mx-auto mt-9 flex w-full max-w-lg items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-4 py-3.5 font-mono text-sm relative sm:px-5">
+                <span className="text-terminal-accent shrink-0">$</span>
                 <span className="whitespace-nowrap text-terminal-foreground">
                   curl -fsSL https://reqsh.dev/install.sh | sh
                 </span>

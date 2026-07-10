@@ -1,10 +1,23 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Not Found',
+  description: 'The page you are looking for does not exist.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (
     <div className="mx-auto flex flex-col items-center justify-center min-h-[70vh] px-6 text-center">
-      <h1 className="text-8xl md:text-9xl font-bold tracking-tighter text-foreground drop-shadow-[0_0_80px_color-mix(in_oklch,var(--accent)_25%,transparent)]">
+      <h1
+        className="text-8xl sm:text-9xl font-bold tracking-tighter text-foreground drop-shadow-[0_0_80px_color-mix(in_oklch,var(--accent)_25%,transparent)]"
+        aria-label="404 Error"
+      >
         404
       </h1>
       <h2 className="mt-8 text-2xl font-bold tracking-tight text-foreground">Command not found</h2>
@@ -14,7 +27,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="mt-10 group flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-snappy hover:brightness-110 hover:shadow-[0_0_30px_-5px_color-mix(in_oklch,var(--accent)_45%,transparent)]"
+        className="mt-10 group flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-snappy hover:brightness-110 hover:shadow-[0_0_30px_-5px_color-mix(in_oklch,var(--accent)_45%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-snappy" />
         Back to Home
