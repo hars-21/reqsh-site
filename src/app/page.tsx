@@ -1,81 +1,44 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   ArrowRight,
   Zap,
   History,
   Braces,
-  Terminal,
+  Terminal as TerminalIcon,
   Timer,
-  MonitorSmartphone,
+  Copy,
+  Check,
 } from 'lucide-react';
 import TerminalDemo from '@/components/terminal-demo';
 import Reveal from '@/components/reveal';
-
-function Eyebrow({ label }: { label: string }) {
-  return (
-    <div className="flex items-center justify-center gap-4">
-      <span className="h-px w-16 bg-gradient-to-r from-transparent to-accent/60 md:w-28" />
-      <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">{label}</span>
-      <span className="h-px w-16 bg-gradient-to-l from-transparent to-accent/60 md:w-28" />
-    </div>
-  );
-}
-
-const highlights = [
-  {
-    icon: Zap,
-    title: 'Instant startup',
-    description: 'Written in Rust. Launches in milliseconds with a minimal memory footprint.',
-  },
-  {
-    icon: Terminal,
-    title: 'Case-insensitive methods',
-    description: 'get, GET, or GeT — reqsh understands all HTTP verbs however you type them.',
-  },
-  {
-    icon: Braces,
-    title: 'Pretty-printed output',
-    description: 'JSON responses are formatted and colorized automatically. No piping to jq.',
-  },
-  {
-    icon: History,
-    title: 'Session history',
-    description: 'Every command is recorded. Inspect, replay, or rerun anything instantly.',
-  },
-  {
-    icon: Timer,
-    title: 'Built-in timing',
-    description: 'Every response includes its latency so you measure performance at a glance.',
-  },
-  {
-    icon: MonitorSmartphone,
-    title: 'Cross-platform',
-    description: 'One binary for macOS, Linux, and Windows. No runtime, no dependencies.',
-  },
-];
+import { Cmd, Code, FeatureRow, Fg, Line, Method, Muted, TerminalCard } from '@/components/feature';
+import {
+  StartupVisual,
+  CaseInsensitiveVisual,
+  PrettyPrintVisual,
+  SessionHistoryVisual,
+  BuiltInTimingVisual,
+} from '@/components/bento-visuals';
 
 export default function Home() {
+  const [curlCopied, setCurlCopied] = useState(false);
+
+  const handleCopyCurl = () => {
+    const cmd = 'curl -fsSL https://reqsh.dev/install.sh | sh';
+    navigator.clipboard.writeText(cmd);
+    setCurlCopied(true);
+    setTimeout(() => setCurlCopied(false), 2000);
+  };
+
   return (
     <div className="relative">
-      <div className="hero-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem]" />
+      <div className="hero-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-184" />
 
       <div className="mx-auto max-w-6xl px-6">
-        {/* Hero */}
         <section className="flex flex-col items-center pt-20 pb-16 text-center md:pt-28 md:pb-20">
-          <Reveal>
-            <Link
-              href="/changelog"
-              className="group inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground transition-snappy hover:border-accent/40 hover:text-foreground"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              v0.2.0 is out
-              <ArrowRight
-                size={12}
-                className="stroke-current transition-snappy group-hover:translate-x-0.5"
-              />
-            </Link>
-          </Reveal>
-
           <Reveal delay={0.08}>
             <h1 className="mt-8 max-w-4xl text-5xl leading-[1.04] font-bold tracking-tighter text-balance text-foreground md:text-7xl lg:text-[5.25rem]">
               The interactive shell for <span className="text-accent">HTTP</span> requests.
@@ -92,7 +55,7 @@ export default function Home() {
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap justify-center gap-3.5">
               <Link
-                href="/install"
+                href="/docs/install"
                 className="group flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-foreground transition-snappy hover:brightness-110 hover:shadow-[0_0_32px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]"
               >
                 Install reqsh
@@ -109,23 +72,14 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
-
-          <Reveal delay={0.32}>
-            <p className="mt-8 font-mono text-xs tracking-wide text-muted-foreground">
-              Open source (MIT) · 28 stars on GitHub · 30+ active users
-            </p>
-          </Reveal>
         </section>
 
-        {/* Terminal demo */}
         <Reveal className="mx-auto mb-28 w-full max-w-4xl md:mb-36" delay={0.1}>
           <TerminalDemo />
         </Reveal>
 
-        {/* Features */}
         <section className="pb-8">
           <Reveal>
-            <Eyebrow label="Features" />
             <h2 className="mx-auto mt-6 max-w-2xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-5xl">
               Everything a terminal-first workflow needs.
             </h2>
@@ -170,15 +124,15 @@ export default function Home() {
             </Line>
             <div className="mt-2 ml-4 space-y-0.5">
               <div className="flex gap-4">
-                <Muted>1</Muted>
+                <Muted>1:</Muted>
                 <Muted>base https://api.stripe.com</Muted>
               </div>
               <div className="flex gap-4">
-                <Muted>2</Muted>
+                <Muted>2:</Muted>
                 <Muted>header Authorization Bearer sk_test</Muted>
               </div>
               <div className="flex gap-4">
-                <Muted>3</Muted>
+                <Muted>3:</Muted>
                 <Muted>GET /v1/customers</Muted>
               </div>
             </div>
@@ -220,7 +174,7 @@ export default function Home() {
             <Line cont>
               <Fg>::send</Fg>
             </Line>
-            <div className="mt-3 text-xs text-terminal-success">200 OK — 142ms</div>
+            <div className="mt-3 text-xs text-terminal-success">HTTP/1.1 200 OK 142ms</div>
             <div className="mt-5" />
             <Line prompt>
               <Cmd>save</Cmd> <Muted>get-users</Muted>
@@ -231,34 +185,84 @@ export default function Home() {
           </TerminalCard>
         </FeatureRow>
 
-        {/* Highlights grid */}
         <section className="border-t border-border py-20 md:py-28">
           <Reveal>
-            <Eyebrow label="Engineered" />
             <h2 className="mx-auto mt-6 max-w-xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
               Small tool. Sharp edges filed off.
             </h2>
           </Reveal>
-          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {highlights.map((item, i) => (
-              <Reveal key={item.title} delay={0.05 * i}>
-                <div className="group h-full rounded-2xl border border-border bg-card p-6 transition-snappy hover:border-accent/30">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-muted text-accent">
-                    <item.icon size={18} className="stroke-current" />
-                  </div>
-                  <h3 className="mt-5 text-base font-semibold text-card-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
+              <div>
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <Zap size={15} className="text-accent" />
+                  Instant startup
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  Written in Rust. Launches in milliseconds with a minimal memory footprint.
+                </p>
+              </div>
+              <StartupVisual />
+            </div>
+
+            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
+              <div>
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <TerminalIcon size={15} className="text-accent" />
+                  Case-insensitive methods
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  get, GET, or GeT — reqsh understands all HTTP verbs however you type them.
+                </p>
+              </div>
+              <CaseInsensitiveVisual />
+            </div>
+
+            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
+              <div>
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <Braces size={15} className="text-accent" />
+                  Pretty-printed output
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  JSON responses are formatted and colorized automatically. No piping to jq.
+                </p>
+              </div>
+              <PrettyPrintVisual />
+            </div>
+
+            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between md:col-span-2 transition-colors hover:border-border hover:bg-muted/30">
+              <div>
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <History size={15} className="text-accent" />
+                  Session history
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  Every command is recorded. Inspect, replay, or rerun anything instantly from the
+                  history list.
+                </p>
+              </div>
+              <div className="flex-1 mt-4">
+                <SessionHistoryVisual />
+              </div>
+            </div>
+
+            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
+              <div>
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <Timer size={15} className="text-accent" />
+                  Built-in timing
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  Every response includes its latency so you measure performance at a glance.
+                </p>
+              </div>
+              <BuiltInTimingVisual />
+            </div>
           </div>
         </section>
 
-        {/* CTA */}
         <section className="relative overflow-hidden rounded-3xl border border-border bg-card">
           <div className="section-glow pointer-events-none absolute inset-0" />
           <div className="relative flex flex-col items-center px-6 py-20 text-center md:py-28">
@@ -270,15 +274,26 @@ export default function Home() {
                 One command. No config files, no accounts, no runtime. Just a fast shell for your
                 API work.
               </p>
-              <div className="mx-auto mt-9 flex max-w-full items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-5 py-3.5 font-mono text-sm">
+              <div className="mx-auto mt-9 flex max-w-lg items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-5 py-3.5 font-mono text-sm relative">
                 <span className="text-terminal-accent">$</span>
                 <span className="whitespace-nowrap text-terminal-foreground">
                   curl -fsSL https://reqsh.dev/install.sh | sh
                 </span>
+                <button
+                  onClick={handleCopyCurl}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-terminal-muted hover:bg-white/10 hover:text-terminal-foreground transition-colors"
+                  aria-label="Copy curl command"
+                >
+                  {curlCopied ? (
+                    <Check size={14} className="text-terminal-success" />
+                  ) : (
+                    <Copy size={14} />
+                  )}
+                </button>
               </div>
               <div className="mt-8 flex flex-wrap justify-center gap-3.5">
                 <Link
-                  href="/install"
+                  href="/docs/install"
                   className="group flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-foreground transition-snappy hover:brightness-110"
                 >
                   Get started
@@ -301,88 +316,5 @@ export default function Home() {
         </section>
       </div>
     </div>
-  );
-}
-
-/* --- Feature row building blocks --- */
-
-function FeatureRow({
-  title,
-  description,
-  children,
-  reverse = false,
-}: {
-  title: string;
-  description: React.ReactNode;
-  children: React.ReactNode;
-  reverse?: boolean;
-}) {
-  return (
-    <section className="border-t border-border py-16 md:py-24">
-      <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-20">
-        <Reveal className={reverse ? 'md:order-2' : ''}>
-          <h3 className="mb-5 text-2xl font-bold tracking-tight text-foreground md:text-4xl">
-            {title}
-          </h3>
-          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-            {description}
-          </p>
-        </Reveal>
-        <Reveal className={reverse ? 'md:order-1' : ''} delay={0.1}>
-          {children}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function TerminalCard({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="overflow-x-auto rounded-2xl border border-terminal-border bg-terminal p-6 font-mono text-sm leading-8 md:p-8">
-      {children}
-    </div>
-  );
-}
-
-function Line({
-  prompt = false,
-  cont = false,
-  children,
-}: {
-  prompt?: boolean;
-  cont?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="whitespace-pre">
-      <span className="font-bold text-terminal-accent">
-        {prompt ? 'reqsh>' : cont ? '.....>' : ''}
-      </span>{' '}
-      {children}
-    </div>
-  );
-}
-
-function Cmd({ children }: { children: React.ReactNode }) {
-  return <span className="font-semibold text-terminal-foreground">{children}</span>;
-}
-
-function Fg({ children }: { children: React.ReactNode }) {
-  return <span className="text-terminal-foreground">{children}</span>;
-}
-
-function Muted({ children }: { children: React.ReactNode }) {
-  return <span className="text-terminal-muted">{children}</span>;
-}
-
-function Method({ children }: { children: React.ReactNode }) {
-  return <span className="font-semibold text-terminal-accent">{children}</span>;
-}
-
-function Code({ children }: { children: React.ReactNode }) {
-  return (
-    <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
-      {children}
-    </code>
   );
 }

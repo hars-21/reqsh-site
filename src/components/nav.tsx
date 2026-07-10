@@ -1,12 +1,25 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import ThemeToggle from '@/components/theme-toggle';
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4">
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between rounded-2xl border border-border bg-background/80 px-4 backdrop-blur-xl md:px-5">
+    <header
+      className={`sticky top-0 z-50 w-full bg-background/80 backdrop-blur-xl transition-colors ${scrolled ? 'border-b border-border/80' : ''}`}
+    >
+      <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="group flex items-center gap-2.5">
           <Image src="/logo.png" alt="reqsh logo" width={28} height={28} className="rounded-lg" />
           <span className="font-mono text-lg font-semibold tracking-tight text-foreground transition-snappy group-hover:text-accent">
@@ -22,13 +35,13 @@ export default function Nav() {
             Docs
           </Link>
           <Link
-            href="/install"
+            href="/docs/install"
             className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-snappy hover:bg-muted hover:text-foreground"
           >
             Install
           </Link>
           <Link
-            href="/changelog"
+            href="/docs/changelog"
             className="hidden rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-snappy hover:bg-muted hover:text-foreground sm:block"
           >
             Changelog

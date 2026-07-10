@@ -21,8 +21,8 @@ const siteUrl = 'https://reqsh.dev';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'reqsh - Interactive HTTP REPL',
-    template: '%s - reqsh',
+    default: 'reqsh | Interactive HTTP REPL',
+    template: '%s | reqsh',
   },
   description:
     'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, re-run from history. Supports GET, POST, PUT, PATCH, DELETE. Built in Rust. Open source.',
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'hars-21', url: 'https://github.com/hars-21' }],
   creator: 'hars-21',
   openGraph: {
-    title: 'reqsh - Interactive HTTP REPL',
+    title: 'reqsh | Interactive HTTP REPL',
     description:
-      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
+      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
     type: 'website',
     locale: 'en_US',
     siteName: 'reqsh',
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
         url: '/banner.svg',
         width: 1200,
         height: 630,
-        alt: 'reqsh - Interactive HTTP Shell',
+        alt: 'reqsh | Interactive HTTP Shell',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'reqsh - Interactive HTTP REPL',
+    title: 'reqsh | Interactive HTTP REPL',
     description: 'An interactive REPL shell for HTTP requests. Built in Rust. Open source.',
     images: ['/banner.svg'],
   },
@@ -116,7 +116,7 @@ export default function RootLayout({
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'macOS, Linux, Windows',
     description:
-      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests, and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
+      'An interactive REPL shell for HTTP requests. Set base URLs, manage headers, use variables, save and run requests and re-run from history. Supports GET, POST, PUT, PATCH, DELETE.',
     url: siteUrl,
     author: {
       '@type': 'Person',
@@ -134,6 +134,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${geistMono.variable} bg-background`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col antialiased">
@@ -141,7 +142,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />
