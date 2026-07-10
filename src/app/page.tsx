@@ -56,7 +56,7 @@ export default function Home() {
             <div className="mt-9 flex flex-wrap justify-center gap-3.5">
               <Link
                 href="/docs/install"
-                className="group flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-foreground transition-snappy hover:brightness-110 hover:shadow-[0_0_32px_-6px_color-mix(in_srgb,var(--accent)_60%,transparent)]"
+                className="group flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-foreground transition-snappy hover:brightness-110 hover:shadow-[0_0_32px_-6px_color-mix(in_oklch,var(--accent)_60%,transparent)]"
               >
                 Install reqsh
                 <ArrowRight
@@ -70,6 +70,26 @@ export default function Home() {
               >
                 Documentation
               </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.32}>
+            <div className="mx-auto mt-9 flex w-120 items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-5 py-3.5 font-mono text-sm relative">
+              <span className="text-terminal-accent">$</span>
+              <span className="whitespace-nowrap text-terminal-foreground">
+                curl -fsSL https://reqsh.dev/install.sh | sh
+              </span>
+              <button
+                onClick={handleCopyCurl}
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-terminal-muted hover:bg-white/10 hover:text-terminal-foreground transition-colors"
+                aria-label="Copy curl command"
+              >
+                {curlCopied ? (
+                  <Check size={14} className="text-terminal-success" />
+                ) : (
+                  <Copy size={14} />
+                )}
+              </button>
             </div>
           </Reveal>
         </section>

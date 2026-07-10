@@ -12,7 +12,7 @@ export function FeatureRow({
   reverse?: boolean;
 }) {
   return (
-    <section className="border-t border-border py-16 md:py-24">
+    <section className="py-16 md:py-24">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-20">
         <Reveal className={reverse ? 'md:order-2' : ''}>
           <h3 className="mb-5 text-2xl font-bold tracking-tight text-foreground md:text-4xl">
