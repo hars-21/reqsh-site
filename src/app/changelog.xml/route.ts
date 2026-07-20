@@ -1,4 +1,5 @@
-import { GITHUB_REPO, GITHUB_BRANCH } from '@/lib/docs-config';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,13 +21,15 @@ function parseChangelog(
   const lines = markdown.split('\n');
   let current: { version: string; date: string; content: string } | null = null;
 
+  const heading = /^##\s+.*?\[v?(\d+\.\d+\.\d+)\].*?[-—]?\s*(\S*)/i;
+
   for (const line of lines) {
-    const headingMatch = line.match(/^##\s+\[?(\d+\.\d+\.\d+)\]?\s*[-—]?\s*(.*)/i);
+    const headingMatch = line.match(heading);
     if (headingMatch) {
       if (current) releases.push(current);
       current = {
         version: headingMatch[1],
-        date: headingMatch[2]?.trim() || new Date().toISOString().split('T')[0],
+        date: headingMatch[2]?.trim() || '',
         content: '',
       };
     } else if (current) {
@@ -39,14 +42,14 @@ function parseChangelog(
 }
 
 export async function GET() {
-  const url = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/CHANGELOG.md`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-
-  if (!res.ok) {
-    return new Response('Failed to fetch changelog', { status: 502 });
+  const filePath = join(process.cwd(), 'content', 'docs', 'changelog.md');
+  let markdown: string;
+  try {
+    markdown = readFileSync(filePath, 'utf-8');
+  } catch {
+    return new Response('Changelog not found', { status: 404 });
   }
 
-  const markdown = await res.text();
   const releases = parseChangelog(markdown);
 
   const items = releases
@@ -54,9 +57,9 @@ export async function GET() {
       (r) => `
     <item>
       <title>v${escapeXml(r.version)}</title>
-      <link>${siteUrl}/docs/changelog</link>
+      <link>${siteUrl}/changelog</link>
       <guid isPermaLink="false">reqsh-v${escapeXml(r.version)}</guid>
-      <pubDate>${new Date(r.date).toUTCString()}</pubDate>
+      <pubDate>${r.date ? new Date(r.date).toUTCString() : new Date().toUTCString()}</pubDate>
       <description>${escapeXml(r.content.trim())}</description>
     </item>`
     )
@@ -66,7 +69,7 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>reqsh Changelog</title>
-    <link>${siteUrl}/docs/changelog</link>
+    <link>${siteUrl}/changelog</link>
     <description>Release history and changelog for reqsh, the interactive HTTP REPL built in Rust.</description>
     <language>en-us</language>
     <atom:link href="${siteUrl}/changelog.xml" rel="self" type="application/rss+xml" />

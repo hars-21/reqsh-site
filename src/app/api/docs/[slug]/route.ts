@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GITHUB_REPO, GITHUB_BRANCH, getDocBySlug } from '@/lib/docs-config';
+import { getDocBySlug } from '@/lib/docs';
 
 export async function GET(
   _request: NextRequest,
@@ -12,15 +12,9 @@ export async function GET(
     return NextResponse.json({ error: 'Doc not found' }, { status: 404 });
   }
 
-  const url = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${doc.githubPath}`;
-
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-
-  if (!res.ok) {
-    return NextResponse.json({ error: `Failed to fetch: ${res.status}` }, { status: 502 });
-  }
-
-  const markdown = await res.text();
-
-  return NextResponse.json({ markdown, title: doc.title, slug: doc.slug });
+  return NextResponse.json({
+    markdown: doc.content,
+    title: doc.title,
+    slug: doc.slug,
+  });
 }

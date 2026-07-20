@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { GITHUB_REPO, GITHUB_BRANCH } from '@/lib/docs-config';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import MarkdownRenderer from '@/components/markdown-renderer';
 
 export const dynamic = 'force-dynamic';
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   title: "What's New",
   description: 'Changelog and release history for reqsh.',
   alternates: {
-    canonical: `${siteUrl}/docs/changelog`,
+    canonical: `${siteUrl}/changelog`,
     types: {
       'application/rss+xml': `${siteUrl}/changelog.xml`,
     },
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: "What's New | reqsh",
     description: 'Changelog and release history for reqsh.',
     type: 'article',
-    url: `${siteUrl}/docs/changelog`,
+    url: `${siteUrl}/changelog`,
     siteName: 'reqsh',
   },
   twitter: {
@@ -29,32 +30,13 @@ export const metadata: Metadata = {
   },
 };
 
-async function fetchChangelog(): Promise<string> {
-  const url = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/CHANGELOG.md`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch: ${res.status}`);
-  }
-
-  return res.text();
-}
-
 export default async function ChangelogPage() {
-  const markdown = await fetchChangelog();
+  const filePath = join(process.cwd(), 'content', 'docs', 'changelog.md');
+  const content = readFileSync(filePath, 'utf-8');
 
   return (
-    <>
-      <header className="mb-8">
-        <h1 className="scroll-m-24 text-3xl font-semibold tracking-tight text-foreground sm:text-3xl">
-          Changelog
-        </h1>
-        <p className="mt-2 text-[15px] text-muted-foreground">
-          Every release of reqsh, from the latest features to the smallest fixes.
-        </p>
-      </header>
-
-      <MarkdownRenderer content={markdown} />
+    <div className="mx-auto max-w-2xl px-6 py-10">
+      <MarkdownRenderer content={content} />
 
       <div className="mt-8">
         <a
@@ -66,6 +48,6 @@ export default async function ChangelogPage() {
           View all releases on GitHub
         </a>
       </div>
-    </>
+    </div>
   );
 }

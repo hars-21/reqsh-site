@@ -55,6 +55,18 @@ export default function Nav() {
           >
             Docs
           </Link>
+          <Link
+            href="/roadmap"
+            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Roadmap
+          </Link>
+          <Link
+            href="/changelog"
+            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Changelog
+          </Link>
         </div>
 
         <div className="flex items-center gap-0.5">

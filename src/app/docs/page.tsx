@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { GITHUB_REPO, GITHUB_BRANCH } from '@/lib/docs-config';
+import { getDocBySlug } from '@/lib/docs';
 import MarkdownRenderer from '@/components/markdown-renderer';
 
 export const dynamic = 'force-dynamic';
@@ -29,19 +29,9 @@ export const metadata: Metadata = {
   },
 };
 
-async function fetchIntroduction(): Promise<string> {
-  const url = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/docs/introduction.md`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch: ${res.status}`);
-  }
-
-  return res.text();
-}
-
 export default async function DocsPage() {
-  const markdown = await fetchIntroduction();
+  const doc = getDocBySlug('introduction');
+  if (!doc) return <div>Documentation not found</div>;
 
-  return <MarkdownRenderer content={markdown} />;
+  return <MarkdownRenderer content={doc.content} />;
 }

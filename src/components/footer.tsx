@@ -3,14 +3,15 @@ import Image from 'next/image';
 
 const resources = [
   { label: 'Documentation', href: '/docs' },
-  { label: 'Installation', href: '/install' },
+  { label: 'Installation', href: '/docs/install' },
+  { label: 'Roadmap', href: '/roadmap' },
   { label: 'Changelog', href: '/changelog' },
 ];
 
 const community = [
   { label: 'GitHub', href: 'https://github.com/hars-21/reqsh' },
   { label: 'Issues', href: 'https://github.com/hars-21/reqsh/issues' },
-  { label: 'Releases (v0.2.0)', href: 'https://github.com/hars-21/reqsh/releases' },
+  { label: 'Releases', href: 'https://github.com/hars-21/reqsh/releases' },
   { label: 'License', href: 'https://github.com/hars-21/reqsh/blob/main/LICENSE' },
 ];
 
@@ -75,7 +76,7 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-foreground md:flex-row">
           <p>© {new Date().getFullYear()} reqsh. Open source (MIT).</p>
-          <p className="font-mono text-xs">Rust · macOS · Linux · Windows</p>
+          <p className="font-mono text-xs">macOS · Linux · Windows</p>
         </div>
       </div>
     </footer>
