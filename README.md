@@ -143,6 +143,7 @@ Full docs at **[reqsh.dev/docs](https://reqsh.dev/docs)**
 - [Usage](https://reqsh.dev/docs/usage) - How to use reqsh
 - [Commands](https://reqsh.dev/docs/commands) - Full command reference
 - [Variables](https://reqsh.dev/docs/variables) - Variable interpolation
+- [Migration](https://reqsh.dev/docs/migration) - Breaking changes and upgrade guidance
 - [Changelog](https://reqsh.dev/docs/changelog) - Release history
 
 ## Community

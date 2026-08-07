@@ -2,26 +2,9 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import {
-  ArrowRight,
-  Zap,
-  History,
-  Braces,
-  Terminal as TerminalIcon,
-  Timer,
-  Copy,
-  Check,
-} from 'lucide-react';
-import TerminalDemo from '@/components/terminal-demo';
+import { ArrowRight, Copy, Check } from 'lucide-react';
 import Reveal from '@/components/reveal';
 import { Cmd, Code, FeatureRow, Fg, Line, Method, Muted, TerminalCard } from '@/components/feature';
-import {
-  StartupVisual,
-  CaseInsensitiveVisual,
-  PrettyPrintVisual,
-  SessionHistoryVisual,
-  BuiltInTimingVisual,
-} from '@/components/bento-visuals';
 
 export default function Home() {
   const [curlCopied, setCurlCopied] = useState(false);
@@ -39,7 +22,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-6xl px-6">
         <section
-          className="flex flex-col items-center pt-20 pb-16 text-center md:pt-28 md:pb-20"
+          className="flex flex-col items-center pt-20 pb-4 text-center md:pt-28"
           aria-labelledby="hero-heading"
         >
           <Reveal delay={0.08}>
@@ -100,9 +83,15 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <Reveal className="mx-auto mb-28 w-full max-w-4xl md:mb-36" delay={0.1}>
-          <TerminalDemo />
-        </Reveal>
+        <video
+          className="mx-auto mb-28 w-full max-w-4xl rounded-2xl bg-card md:mb-36"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/reqsh-demo.mp4" type="video/mp4" />
+        </video>
 
         <section className="pb-8" aria-labelledby="features-heading">
           <Reveal>
@@ -213,90 +202,6 @@ export default function Home() {
             </Line>
           </TerminalCard>
         </FeatureRow>
-
-        <section
-          className="border-t border-border py-20 md:py-28"
-          aria-labelledby="small-tool-heading"
-        >
-          <Reveal>
-            <h2
-              id="small-tool-heading"
-              className="mx-auto mt-6 max-w-xl text-center text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl"
-            >
-              Small tool. Sharp edges filed off.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
-            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
-              <div>
-                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <Zap size={15} className="text-accent" />
-                  Instant startup
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Written in Rust. Launches in milliseconds with a minimal memory footprint.
-                </p>
-              </div>
-              <StartupVisual />
-            </div>
-
-            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
-              <div>
-                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <TerminalIcon size={15} className="text-accent" />
-                  Case-insensitive methods
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  get, GET, or GeT — reqsh understands all HTTP verbs however you type them.
-                </p>
-              </div>
-              <CaseInsensitiveVisual />
-            </div>
-
-            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
-              <div>
-                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <Braces size={15} className="text-accent" />
-                  Pretty-printed output
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  JSON responses are formatted and colorized automatically. No piping to jq.
-                </p>
-              </div>
-              <PrettyPrintVisual />
-            </div>
-
-            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between md:col-span-2 transition-colors hover:border-border hover:bg-muted/30">
-              <div>
-                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <History size={15} className="text-accent" />
-                  Session history
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Every command is recorded. Inspect, replay, or rerun anything instantly from the
-                  history list.
-                </p>
-              </div>
-              <div className="flex-1 mt-4">
-                <SessionHistoryVisual />
-              </div>
-            </div>
-
-            <div className="group rounded-2xl border border-border/60 bg-card p-6 flex flex-col justify-between transition-colors hover:border-border hover:bg-muted/30">
-              <div>
-                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <Timer size={15} className="text-accent" />
-                  Built-in timing
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Every response includes its latency so you measure performance at a glance.
-                </p>
-              </div>
-              <BuiltInTimingVisual />
-            </div>
-          </div>
-        </section>
 
         <section
           className="relative overflow-hidden rounded-3xl border border-border bg-card"

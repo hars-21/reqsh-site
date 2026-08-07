@@ -12,6 +12,7 @@ const DOCS_TO_SYNC = [
   { remote: 'docs/usage.md', slug: 'usage' },
   { remote: 'docs/commands.md', slug: 'commands' },
   { remote: 'docs/variables.md', slug: 'variables' },
+  { remote: 'docs/migration.md', slug: 'migration' },
   { remote: 'CHANGELOG.md', slug: 'changelog' },
   { remote: 'ROADMAP.md', slug: 'roadmap' },
 ];

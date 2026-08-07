@@ -28,6 +28,7 @@ curl -fsSL https://reqsh.dev/install.sh | sh
 - [Usage](https://reqsh.dev/docs/usage): How to use reqsh for HTTP requests
 - [Commands](https://reqsh.dev/docs/commands): Full command reference
 - [Variables](https://reqsh.dev/docs/variables): Variable interpolation and session state
+- [Migration](https://reqsh.dev/docs/migration): Breaking changes in v0.3.0 and how to migrate from earlier versions
 - [Changelog](https://reqsh.dev/docs/changelog): Release history and what's new
 
 ## Source
