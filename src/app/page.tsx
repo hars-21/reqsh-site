@@ -22,7 +22,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-6xl px-6">
         <section
-          className="flex flex-col items-center pt-20 pb-4 text-center md:pt-28"
+          className="flex flex-col items-center pt-20 pb-4 text-center md:pt-28 mb-16"
           aria-labelledby="hero-heading"
         >
           <Reveal delay={0.08}>
@@ -63,7 +63,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.32}>
-            <div className="mx-auto mt-9 flex w-120 items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-4 py-3.5 font-mono text-sm relative sm:px-5">
+            <div className="mx-auto my-9 flex w-120 items-center gap-3 overflow-x-auto rounded-xl border border-terminal-border bg-terminal px-4 py-3.5 font-mono text-sm relative sm:px-5">
               <span className="text-terminal-accent shrink-0">$</span>
               <span className="whitespace-nowrap text-terminal-foreground">
                 curl -fsSL https://reqsh.dev/install.sh | sh
@@ -81,17 +81,11 @@ export default function Home() {
               </button>
             </div>
           </Reveal>
-        </section>
 
-        <video
-          className="mx-auto mb-28 w-full max-w-4xl rounded-2xl bg-card md:mb-36"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/reqsh-demo.mp4" type="video/mp4" />
-        </video>
+          <video className="mx-auto max-w-4xl rounded-2xl" autoPlay loop muted playsInline>
+            <source src="/demo.mp4" type="video/mp4" />
+          </video>
+        </section>
 
         <section className="pb-8" aria-labelledby="features-heading">
           <Reveal>
@@ -102,106 +96,106 @@ export default function Home() {
               Everything a terminal-first workflow needs.
             </h2>
           </Reveal>
+
+          <FeatureRow
+            title="A persistent REPL."
+            description="Stop typing the same host and authentication headers over and over. Set your base URL and headers once per session, every subsequent request uses them automatically."
+          >
+            <TerminalCard>
+              <Line prompt>
+                <Cmd>base</Cmd> <Muted>https://api.stripe.com</Muted>
+              </Line>
+              <Line prompt>
+                <Cmd>header set</Cmd> <Muted>Authorization Bearer sk_test</Muted>
+              </Line>
+              <div className="mt-4" />
+              <Line prompt>
+                <Method>GET</Method> <Fg>/v1/customers</Fg>
+              </Line>
+              <Line cont>
+                <Fg>###</Fg>
+              </Line>
+            </TerminalCard>
+          </FeatureRow>
+
+          <FeatureRow
+            reverse
+            title="Time-travel with history."
+            description={
+              <>
+                Every command is saved. Type <Code>history</Code> to see everything you&apos;ve done
+                in the current session. Made a typo or need to repeat a request? Just use{' '}
+                <Code>rerun &lt;id&gt;</Code> to execute it instantly.
+              </>
+            }
+          >
+            <TerminalCard>
+              <Line prompt>
+                <Cmd>history</Cmd>
+              </Line>
+              <div className="mt-2 ml-4 space-y-0.5">
+                <div className="flex gap-4">
+                  <Muted>1:</Muted>
+                  <Muted>base https://api.stripe.com</Muted>
+                </div>
+                <div className="flex gap-4">
+                  <Muted>2:</Muted>
+                  <Muted>header set Authorization Bearer sk_test</Muted>
+                </div>
+                <div className="flex gap-4">
+                  <Muted>3:</Muted>
+                  <Muted>GET /v1/customers</Muted>
+                </div>
+              </div>
+              <div className="mt-4" />
+              <Line prompt>
+                <Cmd>history rerun</Cmd> <Muted>3</Muted>
+              </Line>
+            </TerminalCard>
+          </FeatureRow>
+
+          <FeatureRow
+            title="Variables. Save. Run."
+            description={
+              <>
+                Use{' '}
+                <Code>
+                  {'{{'}name{'}}'}
+                </Code>{' '}
+                syntax to interpolate values into paths, headers, and bodies. Save any request with{' '}
+                <Code>save</Code> and replay it instantly with <Code>run</Code>. Every response
+                includes its timing.
+              </>
+            }
+          >
+            <TerminalCard>
+              <Line prompt>
+                <Cmd>var set</Cmd> <Muted>token eyJhbGciOiJIUzI1NiJ9</Muted>
+              </Line>
+              <div className="mt-4" />
+              <Line prompt>
+                <Method>GET</Method>{' '}
+                <Fg>
+                  /users/
+                  <span className="text-terminal-accent">
+                    {'{{'}token{'}}'}
+                  </span>
+                </Fg>
+              </Line>
+              <Line cont>
+                <Fg>###</Fg>
+              </Line>
+              <div className="mt-3 text-xs text-terminal-success">HTTP/1.1 200 OK 142ms</div>
+              <div className="mt-5" />
+              <Line prompt>
+                <Cmd>req save</Cmd> <Muted>get-users</Muted>
+              </Line>
+              <Line prompt>
+                <Cmd>req run</Cmd> <Muted>get-users</Muted>
+              </Line>
+            </TerminalCard>
+          </FeatureRow>
         </section>
-
-        <FeatureRow
-          title="A persistent REPL."
-          description="Stop typing the same host and authentication headers over and over. Set your base URL and headers once per session — every subsequent request uses them automatically."
-        >
-          <TerminalCard>
-            <Line prompt>
-              <Cmd>base</Cmd> <Muted>https://api.stripe.com</Muted>
-            </Line>
-            <Line prompt>
-              <Cmd>header</Cmd> <Muted>Authorization Bearer sk_test</Muted>
-            </Line>
-            <div className="mt-4" />
-            <Line prompt>
-              <Method>GET</Method> <Fg>/v1/customers</Fg>
-            </Line>
-            <Line cont>
-              <Fg>::send</Fg>
-            </Line>
-          </TerminalCard>
-        </FeatureRow>
-
-        <FeatureRow
-          reverse
-          title="Time-travel with history."
-          description={
-            <>
-              Every command is saved. Type <Code>history</Code> to see everything you&apos;ve done
-              in the current session. Made a typo or need to repeat a request? Just use{' '}
-              <Code>rerun &lt;id&gt;</Code> to execute it instantly.
-            </>
-          }
-        >
-          <TerminalCard>
-            <Line prompt>
-              <Cmd>history</Cmd>
-            </Line>
-            <div className="mt-2 ml-4 space-y-0.5">
-              <div className="flex gap-4">
-                <Muted>1:</Muted>
-                <Muted>base https://api.stripe.com</Muted>
-              </div>
-              <div className="flex gap-4">
-                <Muted>2:</Muted>
-                <Muted>header Authorization Bearer sk_test</Muted>
-              </div>
-              <div className="flex gap-4">
-                <Muted>3:</Muted>
-                <Muted>GET /v1/customers</Muted>
-              </div>
-            </div>
-            <div className="mt-4" />
-            <Line prompt>
-              <Cmd>rerun</Cmd> <Muted>3</Muted>
-            </Line>
-          </TerminalCard>
-        </FeatureRow>
-
-        <FeatureRow
-          title="Variables. Save. Run."
-          description={
-            <>
-              Use{' '}
-              <Code>
-                {'{{'}name{'}}'}
-              </Code>{' '}
-              syntax to interpolate values into paths, headers, and bodies. Save any request with{' '}
-              <Code>save</Code> and replay it instantly with <Code>run</Code>. Every response
-              includes its timing.
-            </>
-          }
-        >
-          <TerminalCard>
-            <Line prompt>
-              <Cmd>set</Cmd> <Muted>token eyJhbGciOiJIUzI1NiJ9</Muted>
-            </Line>
-            <div className="mt-4" />
-            <Line prompt>
-              <Method>GET</Method>{' '}
-              <Fg>
-                /users/
-                <span className="text-terminal-accent">
-                  {'{{'}token{'}}'}
-                </span>
-              </Fg>
-            </Line>
-            <Line cont>
-              <Fg>::send</Fg>
-            </Line>
-            <div className="mt-3 text-xs text-terminal-success">HTTP/1.1 200 OK 142ms</div>
-            <div className="mt-5" />
-            <Line prompt>
-              <Cmd>save</Cmd> <Muted>get-users</Muted>
-            </Line>
-            <Line prompt>
-              <Cmd>run</Cmd> <Muted>get-users</Muted>
-            </Line>
-          </TerminalCard>
-        </FeatureRow>
 
         <section
           className="relative overflow-hidden rounded-3xl border border-border bg-card"

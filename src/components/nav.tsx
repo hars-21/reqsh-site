@@ -36,34 +36,32 @@ export default function Nav() {
         <div className="flex items-center gap-1">
           <Link href="/" className="group flex items-center gap-2.5 px-2.5 py-1.5">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="reqsh logo"
               width={24}
               height={24}
               className="rounded-md"
               loading="eager"
             />
-            <span className="font-mono text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
-              reqsh
-            </span>
+            <span className="text-lg font-bold text-foreground">reqsh</span>
           </Link>
 
           <div className="mx-1.5 h-4 w-px bg-border" />
           <Link
             href="/docs"
-            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Docs
           </Link>
           <Link
             href="/roadmap"
-            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Roadmap
           </Link>
           <Link
             href="/changelog"
-            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Changelog
           </Link>

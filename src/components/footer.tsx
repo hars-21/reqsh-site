@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="max-w-xs">
             <span className="flex items-center gap-2.5 font-mono text-lg font-semibold tracking-tight text-foreground">
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt="reqsh logo"
                 width={24}
                 height={24}

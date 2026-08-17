@@ -37,12 +37,12 @@
 
   --success: oklch(0.48 0.18 150);
 
-  --terminal: oklch(0.03 0.005 280);
-  --terminal-foreground: oklch(0.93 0 0);
+  --terminal: oklch(0.97 0.002 90);
+  --terminal-foreground: oklch(0.14 0 0);
   --terminal-muted: oklch(0.55 0.01 280);
-  --terminal-border: oklch(1 0 0 / 0.09);
-  --terminal-accent: oklch(0.6 0.22 30);
-  --terminal-success: oklch(0.75 0.2 145);
+  --terminal-border: oklch(0 0 0 / 0.1);
+  --terminal-accent: oklch(0.55 0.22 30);
+  --terminal-success: oklch(0.55 0.2 145);
 
   --sidebar: oklch(0.98 0.002 90);
   --sidebar-foreground: oklch(0.14 0 0);
@@ -53,22 +53,22 @@
   --sidebar-border: oklch(0.88 0.005 90);
   --sidebar-ring: oklch(0.4 0.15 25);
 
-  --syn-prompt: oklch(0.4 0.15 25);
-  --syn-method: oklch(0.4 0.15 25);
-  --syn-command: oklch(0.42 0.15 255);
-  --syn-keyword: oklch(0.42 0.15 255);
-  --syn-variable: oklch(0.42 0.15 175);
-  --syn-url: oklch(0.42 0.15 255);
-  --syn-string: oklch(0.42 0.15 150);
-  --syn-comment: oklch(0.5 0 0);
-  --syn-flag: oklch(0.42 0.15 300);
-  --syn-path: oklch(0.48 0.12 70);
-  --syn-status-ok: oklch(0.45 0.15 150);
-  --syn-status-warn: oklch(0.5 0.12 80);
-  --syn-status-err: oklch(0.5 0.2 25);
-  --syn-time: oklch(0.4 0.15 25);
-  --syn-http: oklch(0.5 0 0);
-  --syn-header: oklch(0.42 0.15 255);
+  --syn-prompt: oklch(0.48 0.18 25);
+  --syn-method: oklch(0.48 0.18 25);
+  --syn-command: oklch(0.48 0.18 255);
+  --syn-keyword: oklch(0.48 0.18 255);
+  --syn-variable: oklch(0.48 0.18 175);
+  --syn-url: oklch(0.48 0.18 255);
+  --syn-string: oklch(0.48 0.18 150);
+  --syn-comment: oklch(0.52 0 0);
+  --syn-flag: oklch(0.48 0.18 300);
+  --syn-path: oklch(0.52 0.14 70);
+  --syn-status-ok: oklch(0.5 0.18 150);
+  --syn-status-warn: oklch(0.52 0.14 80);
+  --syn-status-err: oklch(0.52 0.22 25);
+  --syn-time: oklch(0.48 0.18 25);
+  --syn-http: oklch(0.48 0 0);
+  --syn-header: oklch(0.48 0.18 255);
 }
 
 .dark {
@@ -96,7 +96,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(1 0 0 / 0.09);
+  --border: oklch(1 0 0 / 0.15);
   --input: oklch(0.2 0 0);
   --ring: oklch(0.5 0.2 25);
 
@@ -268,7 +268,7 @@ body {
 .section-glow {
   background: radial-gradient(
     ellipse 55% 60% at 50% 100%,
-    color-mix(in oklch, var(--accent) 10%, transparent),
+    color-mix(in oklch, var(--accent) 25%, transparent),
     transparent 70%
   );
 }
