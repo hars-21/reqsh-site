@@ -17,9 +17,9 @@ const community = [
 
 export default function Footer() {
   return (
-    <footer className="mt-32 border-t border-border" role="contentinfo">
-      <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
-        <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-16">
+    <footer className="mt-20 md:mt-32 border-t border-border" role="contentinfo">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12 md:py-20">
+        <div className="flex flex-col justify-between gap-10 md:flex-row md:gap-16">
           <div className="max-w-xs">
             <span className="flex items-center gap-2.5 font-mono text-lg font-semibold tracking-tight text-foreground">
               <Image
@@ -38,7 +38,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-12 md:gap-20">
+          <div className="flex flex-wrap gap-8 sm:gap-12 md:gap-20">
             <nav aria-label="Resources">
               <h3 className="mb-5 text-sm font-semibold text-foreground">Resources</h3>
               <ul className="space-y-3.5">

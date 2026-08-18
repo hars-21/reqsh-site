@@ -62,14 +62,14 @@ export default function DocsLayoutClient({
   }, [mobileOpen]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <div className="flex min-h-[calc(100svh-3.5rem)] gap-8 lg:gap-12">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="fixed bottom-4 right-4 z-60 flex size-10 items-center justify-center rounded-full border border-border bg-background shadow-lg lg:hidden"
+          className="fixed bottom-5 right-5 z-60 flex size-12 items-center justify-center rounded-full border border-border bg-background shadow-xl lg:hidden text-foreground hover:bg-muted"
           aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
         >
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         {mobileOpen && (
@@ -82,7 +82,7 @@ export default function DocsLayoutClient({
 
         <aside
           className={cn(
-            'fixed top-14 bottom-0 z-50 flex w-60 flex-col border-r border-border/60 bg-background transition-transform duration-200 ease-out lg:sticky lg:translate-x-0 lg:shrink-0',
+            'fixed top-14 bottom-0 z-50 flex w-64 flex-col border-r border-border/60 bg-background transition-transform duration-200 ease-out lg:sticky lg:translate-x-0 lg:shrink-0',
             mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           )}
           style={{ height: 'calc(100svh - 3.5rem)' }}
@@ -112,11 +112,11 @@ export default function DocsLayoutClient({
           </nav>
         </aside>
 
-        <main className="flex min-w-0 flex-1 flex-col py-10">
-          <article className="max-w-2xl">{children}</article>
+        <main className="flex min-w-0 flex-1 flex-col py-8 sm:py-10">
+          <article className="w-full max-w-2xl overflow-hidden">{children}</article>
 
           <div className="mt-16 border-t border-border pt-6">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
               {prev ? (
                 <Link
                   href={`/docs/${prev.slug}`}
@@ -124,15 +124,17 @@ export default function DocsLayoutClient({
                 >
                   <ArrowLeft
                     size={14}
-                    className="text-muted-foreground transition-colors group-hover:text-foreground"
+                    className="text-muted-foreground shrink-0 transition-colors group-hover:text-foreground"
                   />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col min-w-0">
                     <span className="text-[11px] text-muted-foreground">Previous</span>
-                    <span className="text-sm font-medium text-foreground">{prev.title}</span>
+                    <span className="text-sm font-medium text-foreground truncate">
+                      {prev.title}
+                    </span>
                   </div>
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
 
               {next ? (
@@ -140,17 +142,19 @@ export default function DocsLayoutClient({
                   href={`/docs/${next.slug}`}
                   className="group flex-1 flex items-center justify-end gap-3 rounded-lg border border-border/60 px-4 py-3 transition-colors hover:border-border hover:bg-muted/30"
                 >
-                  <div className="flex flex-col text-right">
+                  <div className="flex flex-col text-right min-w-0">
                     <span className="text-[11px] text-muted-foreground">Next</span>
-                    <span className="text-sm font-medium text-foreground">{next.title}</span>
+                    <span className="text-sm font-medium text-foreground truncate">
+                      {next.title}
+                    </span>
                   </div>
                   <ArrowRight
                     size={14}
-                    className="text-muted-foreground transition-colors group-hover:text-foreground"
+                    className="text-muted-foreground shrink-0 transition-colors group-hover:text-foreground"
                   />
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
             </div>
           </div>

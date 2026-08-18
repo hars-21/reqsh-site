@@ -38,7 +38,7 @@ export function FeatureRow({
 
 export function TerminalCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-terminal-border bg-terminal p-6 font-mono text-sm leading-8 md:p-8">
+    <div className="overflow-x-auto rounded-2xl border border-terminal-border bg-terminal p-4 sm:p-6 font-mono text-xs sm:text-sm leading-7 sm:leading-8 md:p-8">
       {children}
     </div>
   );
