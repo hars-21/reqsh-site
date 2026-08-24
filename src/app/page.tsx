@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import posthog from 'posthog-js';
 import { ArrowRight, Copy, Check } from 'lucide-react';
 import Reveal from '@/components/reveal';
 import { Cmd, Code, FeatureRow, Fg, Line, Method, Muted, TerminalCard } from '@/components/feature';
@@ -9,11 +10,12 @@ import { Cmd, Code, FeatureRow, Fg, Line, Method, Muted, TerminalCard } from '@/
 export default function Home() {
   const [curlCopied, setCurlCopied] = useState(false);
 
-  const handleCopyCurl = () => {
+  const handleCopyCurl = (location: 'hero' | 'cta') => {
     const cmd = 'curl -fsSL https://reqsh.dev/install.sh | sh';
     navigator.clipboard.writeText(cmd);
     setCurlCopied(true);
     setTimeout(() => setCurlCopied(false), 2000);
+    posthog.capture('install_command_copied', { location });
   };
 
   return (
@@ -73,7 +75,7 @@ export default function Home() {
                 </span>
               </div>
               <button
-                onClick={handleCopyCurl}
+                onClick={() => handleCopyCurl('hero')}
                 className="shrink-0 rounded-md p-1 text-terminal-muted hover:bg-white/10 hover:text-terminal-foreground transition-colors"
                 aria-label="Copy curl command"
               >
@@ -232,7 +234,7 @@ export default function Home() {
                 </span>
               </div>
               <button
-                onClick={handleCopyCurl}
+                onClick={() => handleCopyCurl('cta')}
                 className="shrink-0 rounded-md p-1 text-terminal-muted hover:bg-white/10 hover:text-terminal-foreground transition-colors"
                 aria-label="Copy curl command"
               >
@@ -259,6 +261,7 @@ export default function Home() {
                 href="https://github.com/hars-21/reqsh"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => posthog.capture('github_link_clicked', { location: 'home_cta' })}
                 className="flex w-full sm:w-auto min-w-36 items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-xs sm:text-sm font-semibold text-foreground transition-snappy hover:bg-muted"
               >
                 Star on GitHub

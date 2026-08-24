@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import posthog from 'posthog-js';
 import { Star, Download, Menu } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ThemeToggle from '@/components/theme-toggle';
@@ -74,6 +75,7 @@ export default function Nav() {
             href="https://github.com/hars-21/reqsh"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => posthog.capture('github_link_clicked', { location: 'nav' })}
             className="group flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             <Star size={14} className="transition-colors group-hover:text-accent" />
@@ -161,6 +163,7 @@ export default function Nav() {
                   href="https://github.com/hars-21/reqsh"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => posthog.capture('github_link_clicked', { location: 'mobile_nav' })}
                   className="flex items-center justify-between rounded-lg border border-border px-3.5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                 >
                   <span className="flex items-center gap-2">

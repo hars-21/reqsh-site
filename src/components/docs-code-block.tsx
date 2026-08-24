@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useMemo } from 'react';
+import posthog from 'posthog-js';
 import { Copy, Check } from 'lucide-react';
 
 type Token = { text: string; className: string };
@@ -297,6 +298,7 @@ export default function DocsCodeBlock({ code }: { code: string; language?: strin
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    posthog.capture('docs_code_copied');
   };
 
   const highlightedLines = useMemo(() => {
